@@ -142,6 +142,7 @@
       width: 64px;
       overflow: hidden;
     }
+    .course-sidebar.collapsed .sb-logo,
     .course-sidebar.collapsed .sb-header,
     .course-sidebar.collapsed .sb-chat-btn-wrap,
     .course-sidebar.collapsed .sb-module-lessons,
@@ -473,13 +474,13 @@
     .hero-section {
       position: relative;
       width: 100%;
-      min-height: 600px;
+      min-height: 420px;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
       background: #FFFFFF;
-      padding: 240px 0 64px;
+      padding: 140px 0 48px;
     }
     .hero-content {
       position: relative;
@@ -488,7 +489,7 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
-      padding: 80px 60px;
+      padding: 48px 60px;
       max-width: 900px;
       width: 120%;
       background: radial-gradient(ellipse at center, rgba(255,255,255,1) 0%, rgba(255,255,255,0.97) 35%, rgba(255,255,255,0) 70%);
@@ -730,6 +731,12 @@
     <button class="sidebar-collapse-btn" id="sidebar-collapse-btn" onclick="toggleSidebarCollapse()" aria-label="Colapsar o expandir el sidebar de navegacion">
       <svg class="w-4 h-4" style="color:#182465" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
     </button>
+    <!-- Logo -->
+    <div class="sb-logo" style="padding: 16px 20px 0;">
+      <a href="/">
+        <img src="brand_assets/logo_black-elevate.png" alt="Elevate Dynamics 365" style="height: 40px; width: auto;">
+      </a>
+    </div>
     <!-- Header -->
     <div class="sb-header">
       <p class="sb-header-label">Curso</p>
