@@ -1,0 +1,25 @@
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+/curso/*
+  Cache-Control: no-store, no-cache, must-revalidate
+  X-Robots-Tag: noindex
+
+/thank-you*
+  X-Robots-Tag: noindex
+  Cache-Control: no-store
+
+/*.html
+  Cache-Control: public, max-age=3600
+
+/brand_assets/*
+  Cache-Control: public, max-age=604800
+
+/icons/*
+  Cache-Control: public, max-age=604800
+
+/Power-Platform-icons/*
+  Cache-Control: public, max-age=604800

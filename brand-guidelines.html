@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elevate Dynamics 365 — Brand Guidelines</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap');
+
+  :root {
+    --primary: #263fc9;
+    --primary-dark: #182465;
+    --primary-mid: #1f3297;
+    --primary-light: #4e64d4;
+    --white: #ffffff;
+    --off-white: #f4f5fb;
+    --gray-100: #e8eaf6;
+    --gray-400: #8890b5;
+    --gray-700: #3a3f5c;
+    --black: #0d0f1a;
+    --font-brand: 'Styrene A', 'DM Sans', system-ui, sans-serif;
+    --font-body: 'Tiempos Text', 'Georgia', 'Times New Roman', serif;
+    --font-fallback: 'DM Sans', system-ui, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    font-family: var(--font-fallback);
+    background: var(--white);
+    color: var(--black);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+    background: rgba(255,255,255,.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--gray-100);
+    padding: 0 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  nav .brand-name {
+    font-family: var(--font-brand);
+    font-weight: 700; font-size: 1.1rem;
+    color: var(--primary-dark);
+    letter-spacing: -0.02em;
+  }
+  nav .nav-links { display: flex; gap: 32px; }
+  nav .nav-links a {
+    font-family: var(--font-brand);
+    font-size: .8rem; font-weight: 500;
+    color: var(--gray-700);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    transition: color .2s;
+  }
+  nav .nav-links a:hover { color: var(--primary); }
+
+  /* ── HERO ── */
+  .hero {
+    margin-top: 64px;
+    height: calc(100vh - 64px);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    background: linear-gradient(160deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-light) 100%);
+    color: var(--white);
+    text-align: center;
+    padding: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 30% 70%, rgba(78,100,212,.4) 0%, transparent 60%),
+                radial-gradient(circle at 80% 20%, rgba(31,50,151,.5) 0%, transparent 50%);
+  }
+  .hero * { position: relative; z-index: 1; }
+  .hero .overline {
+    font-family: var(--font-brand);
+    font-size: .75rem; font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    opacity: .7;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-family: var(--font-brand);
+    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
+  }
+  .hero .subtitle {
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    max-width: 600px;
+    opacity: .85;
+    line-height: 1.7;
+  }
+  .hero .version {
+    position: absolute;
+    bottom: 32px; right: 48px;
+    font-family: var(--font-brand);
+    font-size: .7rem;
+    text-transform: uppercase;
+    letter-spacing: .15em;
+    opacity: .45;
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 120px 48px;
+  }
+  section.full-bleed {
+    max-width: 100%;
+    padding: 120px 0;
+  }
+
+  .section-header {
+    margin-bottom: 72px;
+  }
+  .section-header .label {
+    font-family: var(--font-brand);
+    font-size: .7rem; font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    color: var(--primary);
+    margin-bottom: 16px;
+  }
+  .section-header h2 {
+    font-family: var(--font-brand);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    color: var(--black);
+  }
+  .section-header p {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    color: var(--gray-700);
+    max-width: 640px;
+    margin-top: 16px;
+    line-height: 1.75;
+  }
+
+  /* ── COLOUR PALETTE ── */
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  .color-card {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--gray-100);
+    transition: transform .25s, box-shadow .25s;
+  }
+  .color-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(38,63,201,.12);
+  }
+  .color-swatch {
+    height: 180px;
+    position: relative;
+  }
+  .color-swatch.primary { background: var(--primary); }
+  .color-swatch.primary-dark { background: var(--primary-dark); }
+  .color-swatch.primary-mid { background: var(--primary-mid); }
+  .color-swatch.primary-light { background: var(--primary-light); }
+
+  .color-info {
+    padding: 20px 24px;
+    background: var(--white);
+  }
+  .color-info .color-name {
+    font-family: var(--font-brand);
+    font-weight: 700;
+    font-size: .95rem;
+    color: var(--black);
+    margin-bottom: 8px;
+  }
+  .color-info .color-role {
+    font-family: var(--font-body);
+    font-size: .85rem;
+    color: var(--gray-400);
+    margin-bottom: 12px;
+  }
+  .color-info .color-values {
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .color-info .color-values span {
+    font-family: var(--font-brand);
+    font-size: .75rem;
+    color: var(--gray-700);
+    letter-spacing: .02em;
+  }
+  .color-info .color-values code {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: .75rem;
+    background: var(--off-white);
+    padding: 2px 8px;
+    border-radius: 4px;
+    color: var(--primary-mid);
+  }
+
+  /* ── TYPOGRAPHY ── */
+  .type-showcase {
+    display: flex; flex-direction: column;
+    gap: 64px;
+  }
+  .type-block {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 48px;
+    align-items: start;
+    padding-bottom: 64px;
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .type-block:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .type-meta .type-name {
+    font-family: var(--font-brand);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--black);
+    margin-bottom: 8px;
+  }
+  .type-meta .type-category {
+    font-family: var(--font-brand);
+    font-size: .7rem;
+    text-transform: uppercase;
+    letter-spacing: .15em;
+    color: var(--primary);
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  .type-meta .type-desc {
+    font-family: var(--font-body);
+    font-size: .9rem;
+    color: var(--gray-700);
+    line-height: 1.7;
+  }
+  .type-meta .type-weights {
+    margin-top: 20px;
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .type-meta .weight-tag {
+    font-family: var(--font-brand);
+    font-size: .7rem;
+    padding: 4px 12px;
+    border-radius: 100px;
+    background: var(--off-white);
+    color: var(--gray-700);
+    font-weight: 500;
+  }
+
+  .type-samples {
+    display: flex; flex-direction: column; gap: 24px;
+  }
+  .type-sample-row {
+    display: flex; align-items: baseline; gap: 20px;
+  }
+  .type-sample-row .sample-label {
+    font-family: var(--font-brand);
+    font-size: .65rem;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: var(--gray-400);
+    min-width: 80px;
+    flex-shrink: 0;
+    padding-top: 6px;
+  }
+
+  .sample-styrene {
+    font-family: var(--font-brand);
+    color: var(--black);
+  }
+  .sample-tiempos {
+    font-family: var(--font-body);
+    color: var(--black);
+  }
+
+  .sample-styrene.display { font-size: 3.5rem; font-weight: 700; line-height: 1.1; letter-spacing: -0.03em; }
+  .sample-styrene.h1 { font-size: 2.5rem; font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; }
+  .sample-styrene.h2 { font-size: 1.75rem; font-weight: 700; line-height: 1.2; letter-spacing: -0.015em; }
+  .sample-styrene.h3 { font-size: 1.25rem; font-weight: 600; line-height: 1.3; }
+  .sample-styrene.ui { font-size: .9rem; font-weight: 500; line-height: 1.4; letter-spacing: .01em; }
+  .sample-styrene.caption { font-size: .75rem; font-weight: 500; line-height: 1.4; text-transform: uppercase; letter-spacing: .1em; color: var(--gray-700); }
+
+  .sample-tiempos.body-lg { font-size: 1.2rem; line-height: 1.8; }
+  .sample-tiempos.body { font-size: 1rem; line-height: 1.75; }
+  .sample-tiempos.body-sm { font-size: .875rem; line-height: 1.7; }
+  .sample-tiempos.italic { font-size: 1.1rem; line-height: 1.75; font-style: italic; color: var(--gray-700); }
+
+  /* ── SCALE TABLE ── */
+  .scale-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 48px;
+  }
+  .scale-table th, .scale-table td {
+    text-align: left;
+    padding: 16px 20px;
+    font-family: var(--font-brand);
+    font-size: .85rem;
+  }
+  .scale-table th {
+    font-size: .65rem;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: var(--gray-400);
+    font-weight: 500;
+    border-bottom: 2px solid var(--gray-100);
+  }
+  .scale-table td {
+    border-bottom: 1px solid var(--gray-100);
+    color: var(--gray-700);
+  }
+  .scale-table td:first-child {
+    font-weight: 600;
+    color: var(--black);
+  }
+  .scale-table td code {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: .78rem;
+    background: var(--off-white);
+    padding: 2px 8px;
+    border-radius: 4px;
+    color: var(--primary-mid);
+  }
+
+  /* ── USAGE SECTION ── */
+  .usage-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+  .usage-card {
+    padding: 40px;
+    border-radius: 16px;
+    border: 1px solid var(--gray-100);
+    background: var(--white);
+    transition: box-shadow .25s;
+  }
+  .usage-card:hover {
+    box-shadow: 0 8px 32px rgba(38,63,201,.06);
+  }
+  .usage-card .usage-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 24px;
+    font-size: 1.3rem;
+  }
+  .usage-card .usage-icon.blue { background: rgba(38,63,201,.08); }
+  .usage-card .usage-icon.dark { background: rgba(24,36,101,.08); }
+  .usage-card .usage-icon.mid { background: rgba(31,50,151,.08); }
+  .usage-card .usage-icon.light { background: rgba(78,100,212,.08); }
+
+  .usage-card h3 {
+    font-family: var(--font-brand);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--black);
+    margin-bottom: 12px;
+  }
+  .usage-card p {
+    font-family: var(--font-body);
+    font-size: .9rem;
+    color: var(--gray-700);
+    line-height: 1.7;
+  }
+
+  /* ── DO / DON'T ── */
+  .dos-donts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 48px;
+  }
+  .do-card, .dont-card {
+    padding: 36px;
+    border-radius: 16px;
+  }
+  .do-card {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+  }
+  .dont-card {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+  }
+  .do-card h4, .dont-card h4 {
+    font-family: var(--font-brand);
+    font-weight: 700;
+    font-size: .9rem;
+    margin-bottom: 16px;
+  }
+  .do-card h4 { color: #166534; }
+  .dont-card h4 { color: #991b1b; }
+  .do-card ul, .dont-card ul {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .do-card li, .dont-card li {
+    font-family: var(--font-body);
+    font-size: .875rem;
+    line-height: 1.6;
+    padding-left: 24px;
+    position: relative;
+  }
+  .do-card li::before {
+    content: '✓';
+    position: absolute; left: 0;
+    color: #166534;
+    font-weight: 700;
+  }
+  .dont-card li::before {
+    content: '✗';
+    position: absolute; left: 0;
+    color: #991b1b;
+    font-weight: 700;
+  }
+
+  /* ── COLOR COMBOS ── */
+  .combo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+  }
+  .combo-card {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--gray-100);
+  }
+  .combo-preview {
+    padding: 36px 28px;
+    min-height: 140px;
+    display: flex; flex-direction: column;
+    justify-content: center;
+  }
+  .combo-preview h4 {
+    font-family: var(--font-brand);
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+  }
+  .combo-preview p {
+    font-family: var(--font-body);
+    font-size: .875rem;
+    line-height: 1.6;
+    opacity: .85;
+  }
+  .combo-label {
+    padding: 14px 28px;
+    background: var(--white);
+    font-family: var(--font-brand);
+    font-size: .75rem;
+    color: var(--gray-700);
+    display: flex; justify-content: space-between;
+    align-items: center;
+  }
+  .combo-label .contrast {
+    font-size: .65rem;
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-weight: 600;
+  }
+  .contrast.pass { background: #dcfce7; color: #166534; }
+  .contrast.caution { background: #fef9c3; color: #854d0e; }
+
+  /* ── SPACING ── */
+  .spacing-demo {
+    display: flex; flex-direction: column; gap: 20px;
+    margin-top: 48px;
+  }
+  .spacing-row {
+    display: flex; align-items: center; gap: 20px;
+  }
+  .spacing-row .sp-label {
+    font-family: var(--font-brand);
+    font-size: .75rem;
+    color: var(--gray-400);
+    min-width: 100px;
+    text-align: right;
+  }
+  .spacing-row .sp-bar {
+    height: 32px;
+    border-radius: 6px;
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
+    opacity: .2;
+  }
+  .spacing-row .sp-value {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: .75rem;
+    color: var(--gray-700);
+  }
+
+  /* ── BUTTON SAMPLES ── */
+  .button-samples {
+    display: flex; gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 32px;
+  }
+  .btn {
+    font-family: var(--font-brand);
+    font-weight: 600;
+    font-size: .85rem;
+    letter-spacing: .02em;
+    padding: 14px 32px;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .btn-primary {
+    background: var(--primary);
+    color: var(--white);
+  }
+  .btn-primary:hover { background: var(--primary-mid); }
+  .btn-secondary {
+    background: transparent;
+    color: var(--primary);
+    border-color: var(--primary);
+  }
+  .btn-secondary:hover { background: var(--off-white); }
+  .btn-dark {
+    background: var(--primary-dark);
+    color: var(--white);
+  }
+  .btn-dark:hover { background: var(--primary-mid); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--gray-700);
+    border-color: var(--gray-100);
+  }
+  .btn-ghost:hover { border-color: var(--primary-light); color: var(--primary); }
+
+  /* ── VOICE & TONE ── */
+  .voice-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .voice-card {
+    padding: 36px;
+    border-radius: 16px;
+    background: var(--off-white);
+    text-align: center;
+  }
+  .voice-card .voice-emoji {
+    font-size: 2rem;
+    margin-bottom: 16px;
+  }
+  .voice-card h4 {
+    font-family: var(--font-brand);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--black);
+    margin-bottom: 10px;
+  }
+  .voice-card p {
+    font-family: var(--font-body);
+    font-size: .85rem;
+    color: var(--gray-700);
+    line-height: 1.65;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--primary-dark);
+    color: var(--white);
+    text-align: center;
+    padding: 64px 48px;
+  }
+  footer .footer-brand {
+    font-family: var(--font-brand);
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+  }
+  footer p {
+    font-family: var(--font-body);
+    font-size: .85rem;
+    opacity: .6;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 0 24px; }
+    nav .nav-links { gap: 16px; }
+    nav .nav-links a { font-size: .7rem; }
+    section { padding: 80px 24px; }
+    .color-grid { grid-template-columns: repeat(2, 1fr); }
+    .type-block { grid-template-columns: 1fr; gap: 24px; }
+    .usage-grid { grid-template-columns: 1fr; }
+    .dos-donts { grid-template-columns: 1fr; }
+    .combo-grid { grid-template-columns: 1fr; }
+    .voice-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════ NAV ════════════ -->
+<nav>
+  <div class="brand-name">Elevate Dynamics 365</div>
+  <div class="nav-links">
+    <a href="#color">Color</a>
+    <a href="#typography">Typography</a>
+    <a href="#usage">Usage</a>
+    <a href="#voice">Voice</a>
+  </div>
+</nav>
+
+<!-- ════════════ HERO ════════════ -->
+<div class="hero">
+  <div class="overline">Brand Guidelines — v1.0</div>
+  <h1>Elevate<br>Dynamics 365</h1>
+  <p class="subtitle">
+    This document defines the visual and communication foundations of the Elevate Dynamics 365 brand.
+    Use it as a reference to maintain consistency across every touchpoint.
+  </p>
+  <div class="version">March 2026</div>
+</div>
+
+<!-- ════════════ COLOUR ════════════ -->
+<section id="color">
+  <div class="section-header">
+    <div class="label">01 — Colour Palette</div>
+    <h2>Our colour system</h2>
+    <p>
+      The palette is built on a family of deep, vivid blues that convey trust, ambition, and
+      sophistication. Each tone serves a specific role within the design system.
+    </p>
+  </div>
+
+  <div class="color-grid">
+    <div class="color-card">
+      <div class="color-swatch primary"></div>
+      <div class="color-info">
+        <div class="color-name">Primary Blue</div>
+        <div class="color-role">Core brand colour</div>
+        <div class="color-values">
+          <span>HEX <code>#263FC9</code></span>
+          <span>RGB <code>38, 63, 201</code></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="color-card">
+      <div class="color-swatch primary-dark"></div>
+      <div class="color-info">
+        <div class="color-name">Deep Navy</div>
+        <div class="color-role">Backgrounds, contrast, text on light</div>
+        <div class="color-values">
+          <span>HEX <code>#182465</code></span>
+          <span>RGB <code>24, 36, 101</code></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="color-card">
+      <div class="color-swatch primary-mid"></div>
+      <div class="color-info">
+        <div class="color-name">Mid Blue</div>
+        <div class="color-role">Hover states, secondary accents</div>
+        <div class="color-values">
+          <span>HEX <code>#1F3297</code></span>
+          <span>RGB <code>31, 50, 151</code></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="color-card">
+      <div class="color-swatch primary-light"></div>
+      <div class="color-info">
+        <div class="color-name">Light Blue</div>
+        <div class="color-role">Interactive elements, highlights</div>
+        <div class="color-values">
+          <span>HEX <code>#4E64D4</code></span>
+          <span>RGB <code>78, 100, 212</code></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Colour combos -->
+  <div class="combo-grid">
+    <div class="combo-card">
+      <div class="combo-preview" style="background:#263fc9; color:#fff;">
+        <h4>Sample headline</h4>
+        <p>Example body text on Primary Blue background.</p>
+      </div>
+      <div class="combo-label">
+        White on Primary
+        <span class="contrast pass">AAA ✓</span>
+      </div>
+    </div>
+    <div class="combo-card">
+      <div class="combo-preview" style="background:#182465; color:#fff;">
+        <h4>Sample headline</h4>
+        <p>Example body text on Deep Navy background.</p>
+      </div>
+      <div class="combo-label">
+        White on Deep Navy
+        <span class="contrast pass">AAA ✓</span>
+      </div>
+    </div>
+    <div class="combo-card">
+      <div class="combo-preview" style="background:#f4f5fb; color:#182465;">
+        <h4>Sample headline</h4>
+        <p>Example body text on light background.</p>
+      </div>
+      <div class="combo-label">
+        Deep Navy on Light
+        <span class="contrast pass">AAA ✓</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ TYPOGRAPHY ════════════ -->
+<section id="typography" style="background: var(--off-white); max-width: 100%; padding: 120px 0;">
+  <div style="max-width: 1120px; margin: 0 auto; padding: 0 48px;">
+    <div class="section-header">
+      <div class="label">02 — Typography</div>
+      <h2>Type system</h2>
+      <p>
+        The pairing of Styrene and Tiempos Text strikes a balance between technical modernity
+        and editorial warmth. Styrene leads on interface and brand; Tiempos Text brings readability to conversational content.
+      </p>
+    </div>
+
+    <div class="type-showcase">
+      <!-- Styrene -->
+      <div class="type-block">
+        <div class="type-meta">
+          <div class="type-category">Typeface A — UI &amp; Brand</div>
+          <div class="type-name">Styrene A</div>
+          <p class="type-desc">
+            A geometric typeface with a technical character. Used for headings,
+            interface elements, navigation, buttons, labels, and any
+            brand identity element.
+          </p>
+          <div class="type-weights">
+            <span class="weight-tag">Regular 400</span>
+            <span class="weight-tag">Medium 500</span>
+            <span class="weight-tag">Bold 700</span>
+          </div>
+        </div>
+        <div class="type-samples">
+          <div class="type-sample-row">
+            <span class="sample-label">Display</span>
+            <span class="sample-styrene display">Aa Bb Cc</span>
+          </div>
+          <div class="type-sample-row">
+            <span class="sample-label">H1</span>
+            <span class="sample-styrene h1">Heading One</span>
+          </div>
+          <div class="type-sample-row">
+            <span class="sample-label">H2</span>
+            <span class="sample-styrene h2">Heading Two</span>
+          </div>
+          <div class="type-sample-row">
+            <span class="sample-label">H3</span>
+            <span class="sample-styrene h3">Heading Three</span>
+          </div>
+          <div class="type-sample-row">
+            <span class="sample-label">UI</span>
+            <span class="sample-styrene ui">Button · Navigation · Labels</span>
+          </div>
+          <div class="type-sample-row">
+            <span class="sample-label">Caption</span>
+            <span class="sample-styrene caption">Overline &amp; Captions</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tiempos Text -->
+      <div class="type-block">
+        <div class="type-meta">
+          <div class="type-category">Typeface B — Content &amp; Chat</div>
+          <div class="type-name">Tiempos Text</div>
+          <p class="type-desc">
+            A highly legible editorial serif. Designed for long-form text,
+            chat messages, descriptions, and any block of continuous
+            reading.
+          </p>
+          <div class="type-weights">
+            <span class="weight-tag">Regular 400</span>
+            <span class="weight-tag">Regular Italic</span>
+            <span class="weight-tag">Medium 500</span>
+          </div>
+        </div>
+        <div class="type-samples">
+          <div class="type-sample-row">
+            <span class="sample-label">Body LG</span>
+            <span class="sample-tiempos body-lg">Every great journey begins with an idea that becomes action.</span>
+          </div>
+          <div class="type-sample-row">
+            <span class="sample-label">Body</span>
+            <span class="sample-tiempos body">Elevate Dynamics 365 empowers teams with vision, helping organisations scale their impact from day one.</span>
+          </div>
+          <div class="type-sample-row">
+            <span class="sample-label">Body SM</span>
+            <span class="sample-tiempos body-sm">Supplementary data, footnotes, and secondary text that accompanies the main content.</span>
+          </div>
+          <div class="type-sample-row">
+            <span class="sample-label">Italic</span>
+            <span class="sample-tiempos italic">"To elevate is to believe in progress before it arrives."</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Type Scale Table -->
+    <table class="scale-table">
+      <thead>
+        <tr>
+          <th>Element</th>
+          <th>Font</th>
+          <th>Size</th>
+          <th>Weight</th>
+          <th>Line Height</th>
+          <th>Letter Spacing</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Display</td>
+          <td>Styrene A</td>
+          <td><code>56px</code></td>
+          <td>Bold 700</td>
+          <td>1.1</td>
+          <td><code>-0.03em</code></td>
+        </tr>
+        <tr>
+          <td>H1</td>
+          <td>Styrene A</td>
+          <td><code>40px</code></td>
+          <td>Bold 700</td>
+          <td>1.15</td>
+          <td><code>-0.02em</code></td>
+        </tr>
+        <tr>
+          <td>H2</td>
+          <td>Styrene A</td>
+          <td><code>28px</code></td>
+          <td>Bold 700</td>
+          <td>1.2</td>
+          <td><code>-0.015em</code></td>
+        </tr>
+        <tr>
+          <td>H3</td>
+          <td>Styrene A</td>
+          <td><code>20px</code></td>
+          <td>Semibold 600</td>
+          <td>1.3</td>
+          <td><code>0</code></td>
+        </tr>
+        <tr>
+          <td>UI / Button</td>
+          <td>Styrene A</td>
+          <td><code>14px</code></td>
+          <td>Medium 500</td>
+          <td>1.4</td>
+          <td><code>0.01em</code></td>
+        </tr>
+        <tr>
+          <td>Caption</td>
+          <td>Styrene A</td>
+          <td><code>12px</code></td>
+          <td>Medium 500</td>
+          <td>1.4</td>
+          <td><code>0.1em</code></td>
+        </tr>
+        <tr>
+          <td>Body Large</td>
+          <td>Tiempos Text</td>
+          <td><code>19px</code></td>
+          <td>Regular 400</td>
+          <td>1.8</td>
+          <td><code>0</code></td>
+        </tr>
+        <tr>
+          <td>Body</td>
+          <td>Tiempos Text</td>
+          <td><code>16px</code></td>
+          <td>Regular 400</td>
+          <td>1.75</td>
+          <td><code>0</code></td>
+        </tr>
+        <tr>
+          <td>Body Small</td>
+          <td>Tiempos Text</td>
+          <td><code>14px</code></td>
+          <td>Regular 400</td>
+          <td>1.7</td>
+          <td><code>0</code></td>
+        </tr>
+        <tr>
+          <td>Chat Message</td>
+          <td>Tiempos Text</td>
+          <td><code>16px</code></td>
+          <td>Regular 400</td>
+          <td>1.75</td>
+          <td><code>0</code></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ════════════ USAGE GUIDELINES ════════════ -->
+<section id="usage">
+  <div class="section-header">
+    <div class="label">03 — Usage Guidelines</div>
+    <h2>How to apply the brand</h2>
+    <p>
+      Clear rules for maintaining visual consistency across every platform and format where
+      Elevate Dynamics 365 has a presence.
+    </p>
+  </div>
+
+  <div class="usage-grid">
+    <div class="usage-card">
+      <div class="usage-icon blue">🎨</div>
+      <h3>Primary colour</h3>
+      <p>
+        Use <strong>#263FC9</strong> (Primary Blue) as the main colour for CTAs, links, and featured elements.
+        It should never occupy more than 40% of total visual surface area.
+      </p>
+    </div>
+    <div class="usage-card">
+      <div class="usage-icon dark">🌑</div>
+      <h3>Dark backgrounds</h3>
+      <p>
+        <strong>#182465</strong> (Deep Navy) is reserved for headers, footers, hero sections, and backgrounds that
+        require maximum contrast with white text.
+      </p>
+    </div>
+    <div class="usage-card">
+      <div class="usage-icon mid">🔤</div>
+      <h3>Type hierarchy</h3>
+      <p>
+        Styrene A always leads the visual hierarchy (headings, nav, CTAs).
+        Tiempos Text stays in body copy and messages. Never reverse the roles.
+      </p>
+    </div>
+    <div class="usage-card">
+      <div class="usage-icon light">💬</div>
+      <h3>Chat &amp; messaging</h3>
+      <p>
+        Chat messages always use Tiempos Text at 16px with a line-height of 1.75.
+        Timestamps and message metadata use Styrene A at caption size.
+      </p>
+    </div>
+  </div>
+
+  <!-- Do / Don't -->
+  <div class="dos-donts">
+    <div class="do-card">
+      <h4>✓ Do</h4>
+      <ul>
+        <li>Maintain a minimum contrast ratio of 4.5:1 for text on coloured backgrounds</li>
+        <li>Use the defined type scale without in-between sizes</li>
+        <li>Apply Deep Navy (#182465) for primary text on white backgrounds</li>
+        <li>Respect white space: minimum 48px between sections</li>
+        <li>Use Styrene for navigation and Tiempos for content</li>
+      </ul>
+    </div>
+    <div class="dont-card">
+      <h4>✗ Don't</h4>
+      <ul>
+        <li>Modify the HEX values of the official palette</li>
+        <li>Mix Styrene and Tiempos within the same text block</li>
+        <li>Use the lighter blues as text colour on white backgrounds</li>
+        <li>Apply unauthorised gradients over brand colours</li>
+        <li>Use alternative typefaces outside the defined fallbacks</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Button Samples -->
+  <h3 style="font-family: var(--font-brand); margin-top: 64px; margin-bottom: 8px; font-size: 1.1rem;">Buttons</h3>
+  <p style="font-family: var(--font-body); font-size: .9rem; color: var(--gray-700); margin-bottom: 0;">
+    All buttons use Styrene A Medium at 14px with a border-radius of 10px.
+  </p>
+  <div class="button-samples">
+    <button class="btn btn-primary">Primary Action</button>
+    <button class="btn btn-secondary">Secondary</button>
+    <button class="btn btn-dark">Dark Variant</button>
+    <button class="btn btn-ghost">Ghost Button</button>
+  </div>
+</section>
+
+<!-- ════════════ DESIGN TOKENS ════════════ -->
+<section style="background: var(--off-white); max-width: 100%; padding: 120px 0;">
+  <div style="max-width: 1120px; margin: 0 auto; padding: 0 48px;">
+    <div class="section-header">
+      <div class="label">04 — Design Tokens</div>
+      <h2>Tokens for development</h2>
+      <p>
+        CSS variables ready to integrate into VS Code or any design system.
+        Copy and paste directly into your stylesheet.
+      </p>
+    </div>
+
+    <div style="background: #1e1e2e; border-radius: 16px; padding: 36px 40px; font-family: 'SF Mono', 'Fira Code', monospace; font-size: .82rem; line-height: 2; color: #cdd6f4; overflow-x: auto;">
+      <span style="color: #6c7086;">/* ── Elevate Dynamics 365 Design Tokens ── */</span><br>
+      <span style="color: #cba6f7;">:root</span> {<br>
+      &nbsp;&nbsp;<span style="color: #6c7086;">/* Colors */</span><br>
+      &nbsp;&nbsp;<span style="color: #89b4fa;">--ed-primary</span>: <span style="color: #a6e3a1;">#263FC9</span>;<br>
+      &nbsp;&nbsp;<span style="color: #89b4fa;">--ed-primary-dark</span>: <span style="color: #a6e3a1;">#182465</span>;<br>
+      &nbsp;&nbsp;<span style="color: #89b4fa;">--ed-primary-mid</span>: <span style="color: #a6e3a1;">#1F3297</span>;<br>
+      &nbsp;&nbsp;<span style="color: #89b4fa;">--ed-primary-light</span>: <span style="color: #a6e3a1;">#4E64D4</span>;<br>
+      &nbsp;&nbsp;<span style="color: #89b4fa;">--ed-white</span>: <span style="color: #a6e3a1;">#FFFFFF</span>;<br>
+      &nbsp;&nbsp;<span style="color: #89b4fa;">--ed-off-white</span>: <span style="color: #a6e3a1;">#F4F5FB</span>;<br>
+      &nbsp;&nbsp;<span style="color: #89b4fa;">--ed-gray-100</span>: <span style="color: #a6e3a1;">#E8EAF6</span>;<br>
+      &nbsp;&nbsp;<span style="color: #89b4fa;">--ed-gray-400</span>: <span style="color: #a6e3a1;">#8890B5</span>;<br>
+      &nbsp;&nbsp;<span style="color: #89b4fa;">--ed-gray-700</span>: <span style="color: #a6e3a1;">#3A3F5C</span>;<br>
+      &nbsp;&nbsp;<span style="color: #89b4fa;">--ed-black</span>: <span style="color: #a6e3a1;">#0D0F1A</span>;<br><br>
+      &nbsp;&nbsp;<span style="color: #6c7086;">/* Typography */</span><br>
+      &nbsp;&nbsp;<span style="color: #89b4fa;">--ed-font-brand</span>: <span style="color: #a6e3a1;">'Styrene A', system-ui, sans-serif</span>;<br>
+      &nbsp;&nbsp;<span style="color: #89b4fa;">--ed-font-body</span>: <span style="color: #a6e3a1;">'Tiempos Text', Georgia, serif</span>;<br><br>
+      &nbsp;&nbsp;<span style="color: #6c7086;">/* Spacing */</span><br>
+      &nbsp;&nbsp;<span style="color: #89b4fa;">--ed-space-xs</span>: <span style="color: #fab387;">4px</span>;<br>
+      &nbsp;&nbsp;<span style="color: #89b4fa;">--ed-space-sm</span>: <span style="color: #fab387;">8px</span>;<br>
+      &nbsp;&nbsp;<span style="color: #89b4fa;">--ed-space-md</span>: <span style="color: #fab387;">16px</span>;<br>
+      &nbsp;&nbsp;<span style="color: #89b4fa;">--ed-space-lg</span>: <span style="color: #fab387;">32px</span>;<br>
+      &nbsp;&nbsp;<span style="color: #89b4fa;">--ed-space-xl</span>: <span style="color: #fab387;">48px</span>;<br>
+      &nbsp;&nbsp;<span style="color: #89b4fa;">--ed-space-2xl</span>: <span style="color: #fab387;">64px</span>;<br>
+      &nbsp;&nbsp;<span style="color: #89b4fa;">--ed-space-3xl</span>: <span style="color: #fab387;">120px</span>;<br><br>
+      &nbsp;&nbsp;<span style="color: #6c7086;">/* Radius */</span><br>
+      &nbsp;&nbsp;<span style="color: #89b4fa;">--ed-radius-sm</span>: <span style="color: #fab387;">6px</span>;<br>
+      &nbsp;&nbsp;<span style="color: #89b4fa;">--ed-radius-md</span>: <span style="color: #fab387;">10px</span>;<br>
+      &nbsp;&nbsp;<span style="color: #89b4fa;">--ed-radius-lg</span>: <span style="color: #fab387;">16px</span>;<br>
+      &nbsp;&nbsp;<span style="color: #89b4fa;">--ed-radius-full</span>: <span style="color: #fab387;">100px</span>;<br>
+      }
+    </div>
+
+    <!-- Spacing Visual -->
+    <h3 style="font-family: var(--font-brand); margin-top: 64px; margin-bottom: 8px; font-size: 1.1rem; color: var(--black);">Spacing scale</h3>
+    <div class="spacing-demo">
+      <div class="spacing-row">
+        <span class="sp-label">XS</span>
+        <div class="sp-bar" style="width: 4px;"></div>
+        <span class="sp-value">4px</span>
+      </div>
+      <div class="spacing-row">
+        <span class="sp-label">SM</span>
+        <div class="sp-bar" style="width: 16px;"></div>
+        <span class="sp-value">8px</span>
+      </div>
+      <div class="spacing-row">
+        <span class="sp-label">MD</span>
+        <div class="sp-bar" style="width: 48px;"></div>
+        <span class="sp-value">16px</span>
+      </div>
+      <div class="spacing-row">
+        <span class="sp-label">LG</span>
+        <div class="sp-bar" style="width: 96px;"></div>
+        <span class="sp-value">32px</span>
+      </div>
+      <div class="spacing-row">
+        <span class="sp-label">XL</span>
+        <div class="sp-bar" style="width: 160px;"></div>
+        <span class="sp-value">48px</span>
+      </div>
+      <div class="spacing-row">
+        <span class="sp-label">2XL</span>
+        <div class="sp-bar" style="width: 240px;"></div>
+        <span class="sp-value">64px</span>
+      </div>
+      <div class="spacing-row">
+        <span class="sp-label">3XL</span>
+        <div class="sp-bar" style="width: 400px;"></div>
+        <span class="sp-value">120px</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ VOICE & TONE ════════════ -->
+<section id="voice">
+  <div class="section-header">
+    <div class="label">05 — Voice &amp; Tone</div>
+    <h2>Brand voice</h2>
+    <p>
+      The personality of Elevate Dynamics 365 is expressed through three pillars that guide
+      all our communication, from button copy to a pitch deck.
+    </p>
+  </div>
+
+  <div class="voice-grid">
+    <div class="voice-card">
+      <div class="voice-emoji">⚡</div>
+      <h4>Ambitious</h4>
+      <p>We speak with conviction about the future. We are not afraid to think big and communicate bold goals.</p>
+    </div>
+    <div class="voice-card">
+      <div class="voice-emoji">🤝</div>
+      <h4>Approachable</h4>
+      <p>While we are professional, our communication is direct and free of unnecessary jargon. We connect person to person.</p>
+    </div>
+    <div class="voice-card">
+      <div class="voice-emoji">🎯</div>
+      <h4>Precise</h4>
+      <p>Every word counts. We avoid filler and get to the point. Clarity is our greatest tool.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ FOOTER ════════════ -->
+<footer>
+  <div class="footer-brand">Elevate Dynamics 365</div>
+  <p>Brand Guidelines v1.0 — March 2026</p>
+  <p style="margin-top: 8px;">Confidential document. For internal and collaborator use only.</p>
+</footer>
+
+</body>
+</html>

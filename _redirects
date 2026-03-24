@@ -1,0 +1,8 @@
+# Redirect www to apex domain
+https://www.elevated365.club/* https://elevated365.club/:splat 301
+
+# Ensure /thank-you resolves (already handled by /thank-you/index.html but as fallback)
+/thank-you /thank-you/index.html 200
+
+# Custom 404
+/* /index.html 404

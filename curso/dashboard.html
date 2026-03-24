@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Curso — Elevate Dynamics 365</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    :root {
+      --primary: #263FC9;
+      --primary-dark: #182465;
+      --primary-mid: #1F3297;
+      --primary-light: #4E64D4;
+      --white: #ffffff;
+      --off-white: #F4F5FB;
+      --gray-100: #E8EAF6;
+      --gray-400: #8890B5;
+      --gray-700: #3A3F5C;
+      --black: #0D0F1A;
+      --font-brand: 'DM Sans', system-ui, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+    body {
+      font-family: var(--font-brand);
+      background: var(--off-white);
+      color: var(--black);
+      min-height: 100vh;
+    }
+
+    /* Loading state */
+    .loading {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      color: var(--gray-400);
+    }
+
+    .loading .spinner {
+      width: 32px;
+      height: 32px;
+      border: 3px solid var(--gray-100);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-right: 12px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Header */
+    .header {
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-100);
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .header-logo {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: -0.02em;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .user-email {
+      font-size: 14px;
+      color: var(--gray-700);
+    }
+
+    .btn-logout {
+      padding: 8px 16px;
+      background: transparent;
+      color: var(--gray-700);
+      border: 1px solid var(--gray-100);
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      font-family: var(--font-brand);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-logout:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    /* Main content */
+    .main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 48px 24px;
+      display: none;
+    }
+
+    .welcome {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .welcome-sub {
+      font-size: 16px;
+      color: var(--gray-700);
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+
+    /* Course cards */
+    .courses-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .course-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 28px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 1px 4px rgba(38,63,201,.04), 0 4px 12px rgba(38,63,201,.04);
+      transition: box-shadow 0.2s, transform 0.15s;
+    }
+
+    .course-card:hover {
+      box-shadow: 0 4px 12px rgba(38,63,201,.08), 0 12px 32px rgba(38,63,201,.08);
+      transform: translateY(-2px);
+    }
+
+    .course-info {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .course-number {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+
+    .course-title {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 4px;
+    }
+
+    .course-meta {
+      font-size: 13px;
+      color: var(--gray-400);
+    }
+
+    .course-status {
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 500;
+      background: var(--gray-100);
+      color: var(--gray-700);
+      white-space: nowrap;
+    }
+
+    .course-status.coming {
+      background: #FFF3E0;
+      color: #E65100;
+    }
+
+    /* Info box */
+    .info-box {
+      margin-top: 32px;
+      background: var(--white);
+      border-radius: 16px;
+      padding: 28px 32px;
+      border-left: 4px solid var(--primary);
+      box-shadow: 0 1px 4px rgba(38,63,201,.04);
+    }
+
+    .info-box h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 8px;
+    }
+
+    .info-box p {
+      font-size: 14px;
+      color: var(--gray-700);
+      line-height: 1.7;
+    }
+
+    .info-box a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .info-box a:hover {
+      text-decoration: underline;
+    }
+
+    /* Access denied */
+    .access-denied {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      display: none;
+    }
+
+    .denied-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 48px 40px;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 4px 24px rgba(38,63,201,.08);
+    }
+
+    .denied-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    .denied-card h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 12px;
+    }
+
+    .denied-card p {
+      font-size: 15px;
+      color: var(--gray-700);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 14px 28px;
+      background: var(--primary);
+      color: var(--white);
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    @media (max-width: 600px) {
+      .header {
+        padding: 14px 16px;
+      }
+      .user-email {
+        display: none;
+      }
+      .main {
+        padding: 32px 16px;
+      }
+      .course-card {
+        padding: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .welcome {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Loading state -->
+  <div class="loading" id="loading">
+    <div class="spinner"></div>
+    Cargando...
+  </div>
+
+  <!-- Header (hidden until auth) -->
+  <header class="header" id="header" style="display:none;">
+    <div class="header-logo">Elevate Dynamics 365</div>
+    <div class="header-right">
+      <span class="user-email" id="user-email"></span>
+      <button class="btn-logout" id="btn-logout">Cerrar sesion</button>
+    </div>
+  </header>
+
+  <!-- Main course content (hidden until auth + purchase verified) -->
+  <div class="main" id="main-content">
+    <h1 class="welcome" id="welcome-text">Bienvenido a tu curso</h1>
+    <p class="welcome-sub">Aqui tienes acceso a todo el contenido del programa Elevate Dynamics 365. El contenido se ira publicando progresivamente.</p>
+
+    <div class="courses-grid">
+      <div class="course-card">
+        <div class="course-info">
+          <div class="course-number">1</div>
+          <div>
+            <div class="course-title">Fundamentos de Dynamics 365 F&SCM</div>
+            <div class="course-meta">Modulo introductorio</div>
+          </div>
+        </div>
+        <span class="course-status coming">Proximamente</span>
+      </div>
+
+      <div class="course-card">
+        <div class="course-info">
+          <div class="course-number">2</div>
+          <div>
+            <div class="course-title">Gestion Financiera</div>
+            <div class="course-meta">Contabilidad, proveedores, bancos</div>
+          </div>
+        </div>
+        <span class="course-status coming">Proximamente</span>
+      </div>
+
+      <div class="course-card">
+        <div class="course-info">
+          <div class="course-number">3</div>
+          <div>
+            <div class="course-title">Supply Chain Management</div>
+            <div class="course-meta">Inventario, compras, produccion</div>
+          </div>
+        </div>
+        <span class="course-status coming">Proximamente</span>
+      </div>
+
+      <div class="course-card">
+        <div class="course-info">
+          <div class="course-number">4</div>
+          <div>
+            <div class="course-title">Configuracion y Administracion</div>
+            <div class="course-meta">Setup, seguridad, workflows</div>
+          </div>
+        </div>
+        <span class="course-status coming">Proximamente</span>
+      </div>
+
+      <div class="course-card">
+        <div class="course-info">
+          <div class="course-number">5</div>
+          <div>
+            <div class="course-title">Proyecto Final Integrador</div>
+            <div class="course-meta">Caso practico de empresa real</div>
+          </div>
+        </div>
+        <span class="course-status coming">Proximamente</span>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <h3>Contenido en preparacion</h3>
+      <p>Estamos preparando el contenido del curso. Te notificaremos por email cuando los modulos esten disponibles. Si tienes cualquier duda, escribenos a <a href="mailto:hola@elevated365.club">hola@elevated365.club</a>.</p>
+    </div>
+  </div>
+
+  <!-- Access denied (shown if no purchase found) -->
+  <div class="access-denied" id="access-denied">
+    <div class="denied-card">
+      <div class="denied-icon">&#x1F512;</div>
+      <h2>Acceso restringido</h2>
+      <p>Esta area es exclusiva para alumnos del programa completo Elevate Dynamics 365. Si ya has realizado la compra, asegurate de usar el mismo email.</p>
+      <a href="/curso-completo.html" class="btn-primary">Ver el programa completo</a>
+    </div>
+  </div>
+
+  <script>
+    const SUPABASE_URL = 'https://sknreauewmriiuulejxh.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNrbnJlYXVld21yaWl1dWxlanhoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQxODIwOTgsImV4cCI6MjA4OTc1ODA5OH0.0b8ve6XOYO80AxkW0x8_Uo6ItWnFLVYYJkYUQUfuELw';
+
+    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    const loadingEl = document.getElementById('loading');
+    const headerEl = document.getElementById('header');
+    const mainEl = document.getElementById('main-content');
+    const deniedEl = document.getElementById('access-denied');
+    const userEmailEl = document.getElementById('user-email');
+    const welcomeEl = document.getElementById('welcome-text');
+
+    async function checkAccess() {
+      // Get current session
+      const { data: { session } } = await sb.auth.getSession();
+
+      if (!session) {
+        // Not logged in, redirect to login
+        window.location.href = '/curso/index.html';
+        return;
+      }
+
+      const user = session.user;
+      userEmailEl.textContent = user.email;
+
+      // Check if user has a purchase
+      const { data: purchases, error } = await sb
+        .from('purchases')
+        .select('*')
+        .eq('user_id', user.id)
+        .eq('status', 'completed');
+
+      loadingEl.style.display = 'none';
+      headerEl.style.display = 'flex';
+
+      if (error || !purchases || purchases.length === 0) {
+        // No purchase found
+        deniedEl.style.display = 'flex';
+        return;
+      }
+
+      // Has purchase — show course content
+      const name = user.user_metadata?.full_name;
+      if (name) {
+        welcomeEl.textContent = 'Bienvenido, ' + name.split(' ')[0];
+      }
+      mainEl.style.display = 'block';
+    }
+
+    // Handle logout
+    document.getElementById('btn-logout').addEventListener('click', async () => {
+      await sb.auth.signOut();
+      window.location.href = '/';
+    });
+
+    // Initialize
+    checkAccess();
+  </script>
+</body>
+</html>

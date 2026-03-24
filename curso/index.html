@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acceso al Curso — Elevate Dynamics 365</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    :root {
+      --primary: #263FC9;
+      --primary-dark: #182465;
+      --primary-mid: #1F3297;
+      --primary-light: #4E64D4;
+      --white: #ffffff;
+      --off-white: #F4F5FB;
+      --gray-100: #E8EAF6;
+      --gray-400: #8890B5;
+      --gray-700: #3A3F5C;
+      --black: #0D0F1A;
+      --font-brand: 'DM Sans', system-ui, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+    body {
+      font-family: var(--font-brand);
+      background: var(--off-white);
+      color: var(--black);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .login-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 48px 40px;
+      max-width: 440px;
+      width: 100%;
+      box-shadow: 0 4px 24px rgba(38,63,201,.08), 0 12px 48px rgba(38,63,201,.06);
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--primary);
+      text-align: center;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .login-title {
+      font-size: 26px;
+      font-weight: 700;
+      text-align: center;
+      color: var(--black);
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .login-subtitle {
+      font-size: 15px;
+      color: var(--gray-700);
+      text-align: center;
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--gray-700);
+      margin-bottom: 8px;
+    }
+
+    input[type="email"] {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid var(--gray-100);
+      border-radius: 12px;
+      font-size: 16px;
+      font-family: var(--font-brand);
+      color: var(--black);
+      transition: border-color 0.2s;
+      outline: none;
+    }
+
+    input[type="email"]:focus {
+      border-color: var(--primary);
+    }
+
+    input[type="email"]::placeholder {
+      color: var(--gray-400);
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: 16px;
+      margin-top: 20px;
+      background: var(--primary);
+      color: var(--white);
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      font-family: var(--font-brand);
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-login:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-login:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .message {
+      margin-top: 20px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      font-size: 14px;
+      line-height: 1.5;
+      display: none;
+    }
+
+    .message.success {
+      display: block;
+      background: #E8F5E9;
+      color: #2E7D32;
+      border: 1px solid #C8E6C9;
+    }
+
+    .message.error {
+      display: block;
+      background: #FFEBEE;
+      color: #C62828;
+      border: 1px solid #FFCDD2;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 24px;
+      font-size: 14px;
+      color: var(--gray-400);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .back-link:hover {
+      color: var(--primary);
+    }
+
+    .lock-icon {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 48px;
+      line-height: 1;
+    }
+
+    @media (max-width: 480px) {
+      .login-card {
+        padding: 36px 24px;
+      }
+      .login-title {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-card">
+    <div class="lock-icon">&#x1F393;</div>
+    <div class="logo">Elevate Dynamics 365</div>
+    <h1 class="login-title">Accede a tu curso</h1>
+    <p class="login-subtitle">Introduce tu email de compra y te enviaremos un enlace de acceso directo. Sin contrasenas.</p>
+
+    <form id="login-form">
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="tu@email.com" required>
+      <button type="submit" class="btn-login" id="btn-submit">Enviar enlace de acceso</button>
+    </form>
+
+    <div id="message" class="message"></div>
+
+    <a href="/" class="back-link">Volver a la pagina principal</a>
+  </div>
+
+  <script>
+    const SUPABASE_URL = 'https://sknreauewmriiuulejxh.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNrbnJlYXVld21yaWl1dWxlanhoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQxODIwOTgsImV4cCI6MjA4OTc1ODA5OH0.0b8ve6XOYO80AxkW0x8_Uo6ItWnFLVYYJkYUQUfuELw';
+
+    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    // If already logged in, redirect to dashboard
+    sb.auth.getSession().then(({ data: { session } }) => {
+      if (session) {
+        window.location.href = '/curso/dashboard.html';
+      }
+    });
+
+    const form = document.getElementById('login-form');
+    const btn = document.getElementById('btn-submit');
+    const messageEl = document.getElementById('message');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+
+      if (!email) return;
+
+      btn.disabled = true;
+      btn.textContent = 'Enviando...';
+      messageEl.className = 'message';
+
+      try {
+        const { error } = await sb.auth.signInWithOtp({
+          email: email,
+          options: {
+            emailRedirectTo: window.location.origin + '/curso/dashboard.html'
+          }
+        });
+
+        if (error) throw error;
+
+        messageEl.className = 'message success';
+        messageEl.innerHTML = '<strong>Enlace enviado.</strong> Revisa tu bandeja de entrada (y spam) y haz clic en el enlace para acceder a tu curso.';
+        form.style.display = 'none';
+      } catch (err) {
+        messageEl.className = 'message error';
+        messageEl.textContent = 'Error: ' + err.message;
+        btn.disabled = false;
+        btn.textContent = 'Enviar enlace de acceso';
+      }
+    });
+  </script>
+</body>
+</html>
