@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Condiciones Generales de Contratación | Elevate D365 — Formación Profesional en Dynamics 365</title>
+  <meta name="description" content="Condiciones generales de contratación de Elevate Dynamics 365 (Gordezalo, S.L.). Términos que regulan la adquisición de productos y servicios en elevated365.club.">
+  <link rel="canonical" href="https://elevated365.club/condiciones-generales-contratacion">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta property="og:title" content="Condiciones Generales de Contratación | Elevate D365">
+  <meta property="og:description" content="Condiciones generales de contratación que regulan la adquisición de productos y servicios en elevated365.club.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://elevated365.club/condiciones-generales-contratacion">
+  <meta property="og:locale" content="es_ES">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #263FC9;
+      --primary-dark: #182465;
+      --primary-mid: #1F3297;
+      --primary-light: #4E64D4;
+      --white: #ffffff;
+      --off-white: #F4F5FB;
+      --gray-100: #E8EAF6;
+      --gray-400: #8890B5;
+      --gray-500: #6B7199;
+      --gray-700: #3A3F5C;
+      --black: #0D0F1A;
+      --font-brand: 'DM Sans', system-ui, sans-serif;
+      --font-body: 'Georgia', 'Times New Roman', serif;
+      --shadow-sm: 0 1px 2px rgba(38,63,201,.04), 0 2px 6px rgba(38,63,201,.05);
+      --shadow-md: 0 1px 2px rgba(38,63,201,.04), 0 4px 12px rgba(38,63,201,.07), 0 12px 28px rgba(38,63,201,.07);
+      --ease-spring: cubic-bezier(0.34,1.56,0.64,1);
+      --ease-out: cubic-bezier(0.16,1,0.3,1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-brand);
+      background: var(--white);
+      color: var(--black);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; border: none; background: none; font: inherit; }
+
+    /* ── GRAIN ── */
+    .grain::after {
+      content: '';
+      position: absolute; inset: 0;
+      opacity: .04;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 2;
+    }
+
+    /* ── LAYOUT ── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 80px; display: flex; align-items: center;
+      background: rgba(255,255,255,.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 1px 0 rgba(38,63,201,.06), 0 4px 24px rgba(38,63,201,.06);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 24px; }
+    .nav-logo { display: flex; align-items: center; flex-shrink: 0; margin-right: 36px; }
+    .nav-logo img { height: 40px; width: auto; }
+
+    .nav-links { display: flex; align-items: center; gap: 40px; list-style: none; flex-shrink: 0; }
+    .nav-links a {
+      font-family: var(--font-brand); font-size: .78rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: .09em;
+      color: var(--gray-400);
+      white-space: nowrap;
+      transition: color .2s ease;
+    }
+    .nav-links a:hover { color: var(--primary); }
+
+    .nav-cta {
+      font-family: var(--font-brand); font-weight: 600; font-size: .8rem;
+      padding: 10px 24px; border-radius: 10px; white-space: nowrap; flex-shrink: 0;
+      background: var(--primary); color: var(--white);
+      border: 1.5px solid var(--primary);
+      transition: background .15s ease, border-color .15s ease, transform .2s var(--ease-spring);
+    }
+    .nav-cta:hover { background: var(--primary-mid); border-color: var(--primary-mid); transform: translateY(-1px); }
+    .nav-cta:active { transform: translateY(0); }
+
+    /* ── LEGAL HERO ── */
+    .legal-hero {
+      position: relative; overflow: hidden;
+      background: linear-gradient(140deg, var(--primary-dark) 0%, var(--primary-mid) 45%, var(--primary) 100%);
+      padding: 160px 48px 72px;
+      text-align: center;
+    }
+    .legal-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 8% 20%, rgba(78,100,212,.45) 0%, transparent 60%),
+        radial-gradient(ellipse 55% 70% at 95% 85%, rgba(24,36,101,.6) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .legal-hero-content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+    .legal-hero .lbl {
+      font-family: var(--font-brand); font-size: .68rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .2em;
+      color: rgba(165,184,255,.8); margin-bottom: 16px;
+    }
+    .legal-hero h1 {
+      font-family: var(--font-brand);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700; line-height: 1.1; letter-spacing: -.03em;
+      color: var(--white); margin-bottom: 16px;
+    }
+    .legal-hero p {
+      font-family: var(--font-body); font-size: 1rem;
+      color: rgba(255,255,255,.55); line-height: 1.75;
+    }
+
+    /* ── LEGAL CONTENT ── */
+    .legal-section { padding: 80px 0 104px; }
+    .legal-wrap {
+      max-width: 780px; margin: 0 auto;
+    }
+
+    /* Breadcrumb */
+    .legal-breadcrumb {
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 48px; padding-bottom: 24px;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .legal-breadcrumb a {
+      font-family: var(--font-brand); font-size: .78rem; font-weight: 500;
+      color: var(--primary); transition: color .15s ease;
+    }
+    .legal-breadcrumb a:hover { color: var(--primary-dark); }
+    .legal-breadcrumb span {
+      font-family: var(--font-brand); font-size: .78rem; color: var(--gray-400);
+    }
+    .legal-breadcrumb .sep { color: var(--gray-400); font-size: .68rem; }
+
+    /* Table of contents */
+    .legal-toc {
+      background: var(--off-white);
+      border: 1px solid var(--gray-100);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 48px;
+    }
+    .legal-toc-title {
+      font-family: var(--font-brand); font-size: .68rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .16em;
+      color: var(--gray-400); margin-bottom: 16px;
+    }
+    .legal-toc ol {
+      list-style: none; counter-reset: toc;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .legal-toc ol li { counter-increment: toc; }
+    .legal-toc ol li a {
+      display: flex; align-items: center; gap: 10px;
+      font-family: var(--font-brand); font-size: .88rem; font-weight: 500;
+      color: var(--gray-700);
+      transition: color .15s ease;
+    }
+    .legal-toc ol li a::before {
+      content: counter(toc, decimal-leading-zero);
+      font-family: var(--font-brand); font-size: .68rem; font-weight: 700;
+      color: var(--primary-light);
+      min-width: 22px;
+    }
+    .legal-toc ol li a:hover { color: var(--primary); }
+
+    /* Section headings */
+    .legal-wrap h2 {
+      font-family: var(--font-brand);
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -.02em;
+      color: var(--primary-dark);
+      margin: 56px 0 20px;
+      padding-top: 24px;
+      border-top: 1px solid var(--gray-100);
+    }
+    .legal-wrap h2:first-of-type {
+      margin-top: 0;
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .legal-wrap h3 {
+      font-family: var(--font-brand);
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -.01em;
+      color: var(--black);
+      margin: 32px 0 12px;
+    }
+
+    /* Body text */
+    .legal-wrap p {
+      font-family: var(--font-body);
+      font-size: .92rem;
+      color: var(--gray-700);
+      line-height: 1.85;
+      margin-bottom: 16px;
+    }
+    .legal-wrap p strong {
+      color: var(--primary-dark);
+      font-weight: 700;
+    }
+
+    /* Lists */
+    .legal-wrap ul, .legal-wrap ol {
+      margin: 12px 0 20px;
+      padding-left: 0;
+    }
+    .legal-wrap ul { list-style: none; }
+    .legal-wrap ul li {
+      font-family: var(--font-body); font-size: .92rem;
+      color: var(--gray-700); line-height: 1.85;
+      padding: 4px 0 4px 24px; position: relative;
+    }
+    .legal-wrap ul li::before {
+      content: '';
+      position: absolute; left: 0; top: 14px;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--primary-light);
+    }
+    .legal-wrap ol {
+      list-style: none; counter-reset: legal-ol;
+    }
+    .legal-wrap ol li {
+      font-family: var(--font-body); font-size: .92rem;
+      color: var(--gray-700); line-height: 1.85;
+      padding: 4px 0 4px 32px; position: relative;
+      counter-increment: legal-ol;
+    }
+    .legal-wrap ol li::before {
+      content: counter(legal-ol) ".";
+      position: absolute; left: 0; top: 4px;
+      font-family: var(--font-brand); font-size: .82rem; font-weight: 700;
+      color: var(--primary-light);
+    }
+
+    /* Nested lists (sub-items) */
+    .legal-wrap ol ol {
+      counter-reset: legal-sub;
+      margin: 8px 0 12px;
+    }
+    .legal-wrap ol ol li {
+      counter-increment: legal-sub;
+      padding-left: 28px;
+    }
+    .legal-wrap ol ol li::before {
+      content: counter(legal-sub, lower-alpha) ")";
+    }
+
+    /* Info card (identification) */
+    .legal-info-card {
+      background: var(--off-white);
+      border: 1px solid var(--gray-100);
+      border-radius: 14px;
+      padding: 24px 28px;
+      margin: 20px 0 24px;
+    }
+    .legal-info-card p {
+      margin-bottom: 6px;
+      font-size: .88rem;
+    }
+    .legal-info-card p:last-child { margin-bottom: 0; }
+
+    /* Email links */
+    .legal-wrap a {
+      color: var(--primary);
+      font-weight: 500;
+      text-decoration: underline;
+      text-decoration-color: rgba(38,63,201,.25);
+      text-underline-offset: 3px;
+      transition: text-decoration-color .15s ease, color .15s ease;
+    }
+    .legal-wrap a:hover {
+      color: var(--primary-dark);
+      text-decoration-color: var(--primary-dark);
+    }
+
+    /* Last updated badge */
+    .legal-updated {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-top: 48px; padding: 10px 20px;
+      border-radius: 100px;
+      background: var(--off-white);
+      border: 1px solid var(--gray-100);
+      font-family: var(--font-brand); font-size: .78rem; font-weight: 500;
+      color: var(--gray-500);
+    }
+    .legal-updated svg { flex-shrink: 0; }
+
+    .legal-copyright {
+      margin-top: 16px;
+      font-family: var(--font-brand); font-size: .78rem;
+      color: var(--gray-400);
+    }
+
+    /* ── FOOTER ── */
+    .footer { background: #070b1c; padding: 80px 0 40px; }
+    .footer-grid {
+      display: grid; grid-template-columns: 2.2fr 1fr 1fr 1fr; gap: 64px;
+      padding-bottom: 64px; border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .footer-brand img { height: 44px; width: auto; margin-bottom: 18px; }
+    .footer-brand img[src*="white"] { height: 56px !important; width: auto !important; }
+    .footer-brand p { font-family: var(--font-body); font-size: .875rem; color: rgba(255,255,255,.4); line-height: 1.75; max-width: 270px; }
+    .footer-col h4 {
+      font-family: var(--font-brand); font-size: .66rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .16em;
+      color: rgba(255,255,255,.35); margin-bottom: 20px;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer-col ul a {
+      font-family: var(--font-brand); font-size: .875rem;
+      color: rgba(255,255,255,.5);
+      transition: color .15s ease;
+      text-decoration: none;
+    }
+    .footer-col ul a:hover { color: var(--white); }
+    .footer-bottom { padding-top: 32px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+    .footer-bottom p { font-family: var(--font-brand); font-size: .78rem; color: rgba(255,255,255,.28); }
+    .footer-socials { display: flex; gap: 10px; }
+    .soc-link {
+      width: 36px; height: 36px; border-radius: 9px;
+      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .8rem; font-weight: 700; color: rgba(255,255,255,.45);
+      font-family: var(--font-brand);
+      transition: background .15s ease, color .15s ease, transform .2s var(--ease-spring);
+    }
+    .soc-link:hover { background: rgba(38,63,201,.35); color: var(--white); transform: translateY(-2px); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+    }
+    @media (max-width: 768px) {
+      .container { padding: 0 24px; }
+      .legal-hero { padding: 140px 24px 56px; }
+      .legal-section { padding: 56px 0 72px; }
+      .legal-toc { padding: 22px 24px; }
+      .legal-info-card { padding: 20px 22px; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<nav class="nav">
+  <div class="container" style="max-width:100%; padding:0 24px 0 0;">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo" aria-label="Elevate Dynamics 365 home">
+        <img src="brand_assets/logo_black-elevate.png" alt="Elevate Dynamics 365">
+      </a>
+      <div style="display:flex; align-items:center; gap:40px;">
+        <ul class="nav-links">
+          <li><a href="/#teachers">Nuestros Profesores</a></li>
+          <li><a href="/#programs">Nuestros Programas</a></li>
+          <li><a href="/#pricing">Precio</a></li>
+          <li><a href="/curso/" style="opacity:.7;">Acceso Alumnos</a></li>
+        </ul>
+        <a href="https://elevated365.club/m1-introduccion-d36-free" class="nav-cta">Prueba Gratis</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════ LEGAL HERO ══════════ -->
+<section class="legal-hero grain">
+  <div class="legal-hero-content">
+    <div class="lbl">Marco Contractual</div>
+    <h1>Condiciones Generales de Contratación</h1>
+    <p>Términos que regulan la adquisición de productos y servicios ofrecidos a través de elevated365.club</p>
+  </div>
+</section>
+
+<!-- ══════════ LEGAL CONTENT ══════════ -->
+<section class="legal-section">
+  <div class="container">
+    <div class="legal-wrap">
+
+      <!-- Breadcrumb -->
+      <div class="legal-breadcrumb">
+        <a href="/">Inicio</a>
+        <span class="sep">&rsaquo;</span>
+        <span>Condiciones Generales de Contratación</span>
+      </div>
+
+      <!-- Intro -->
+      <p>Lea cuidadosamente este documento. El mismo constituye el Aviso Legal que regula el acceso, navegación y utilización del sitio web ubicado en la URL <a href="https://www.elevated365.club" target="_blank" rel="noopener">www.elevated365.club</a> (en adelante, conjuntamente el "Sitio Web").</p>
+      <p>El acceso, navegación y utilización del Sitio Web implican la aceptación expresa y sin reservas de todos los términos del presente aviso legal, teniendo la misma validez y eficacia que cualquier contrato celebrado por escrito y firmado, de conformidad con la legislación aplicable en materia de contratación digital.</p>
+      <p>Su observancia y cumplimiento serán exigibles respecto de cualquier persona que acceda, navegue o utilice el Sitio Web (en adelante, el "Usuario" o los "Usuarios", según corresponda). Si cualquier Usuario no está de acuerdo con los términos expuestos, deberá abstenerse de acceder, navegar o utilizar el Sitio Web.</p>
+
+      <!-- Table of Contents -->
+      <div class="legal-toc">
+        <div class="legal-toc-title">Contenido</div>
+        <ol>
+          <li><a href="#identificacion">Identificación</a></li>
+          <li><a href="#objeto">Objeto</a></li>
+          <li><a href="#funcionamiento">Funcionamiento del sitio web</a></li>
+          <li><a href="#reglas">Reglas de uso del sitio web</a></li>
+          <li><a href="#contratacion">Contratación electrónica</a></li>
+          <li><a href="#desistimiento">Derecho de desistimiento y garantías</a></li>
+          <li><a href="#garantia">Garantía comercial de los productos y su alcance</a></li>
+          <li><a href="#propiedad">Propiedad intelectual</a></li>
+          <li><a href="#privacidad">Privacidad</a></li>
+          <li><a href="#responsabilidades">Responsabilidades</a></li>
+          <li><a href="#salvaguarda">Cláusula de salvaguarda</a></li>
+          <li><a href="#legislacion">Ley aplicable y jurisdicción competente</a></li>
+        </ol>
+      </div>
+
+      <!-- 1. IDENTIFICACIÓN -->
+      <h2 id="identificacion">1. Identificación</h2>
+      <div class="legal-info-card">
+        <p><strong>Titular:</strong> Gordezalo, S.L., "ELEVATED365" o el "Titular"</p>
+        <p><strong>N.I.F.:</strong> B23898828</p>
+        <p><strong>Domicilio Social:</strong> Calle Fortuny 19, 28010 Madrid</p>
+        <p><strong>Datos de Registro:</strong> Registro Mercantil de Madrid [DATOS REGISTRALES]</p>
+        <p><strong>E-mail:</strong> <a href="mailto:info@elevated365.club">info@elevated365.club</a></p>
+        <p><strong>Teléfono:</strong> [TELÉFONO DE CONTACTO]</p>
+      </div>
+
+      <!-- 2. OBJETO -->
+      <h2 id="objeto">2. Objeto</h2>
+      <p>Mediante el presente documento se establecen las condiciones generales de contratación (en adelante, las "Condiciones de Contratación") que regularán la adquisición por parte de los Usuarios de alguno de los productos y/o servicios ofrecidos a través del Sitio Web.</p>
+      <p>Cualquier cuestión que no hubiera sido expresamente prevista en las presentes Condiciones de Contratación se entenderá reservada a ELEVATED365, sin perjuicio de la aplicación de lo dispuesto en la normativa vigente.</p>
+      <p>Asimismo, ELEVATED365 se reserva el derecho a llevar a cabo modificaciones y/o actualizaciones en las Condiciones de Contratación, de las que se informará previamente al Usuario para su aceptación o rechazo en caso de resultar sustanciales. Por ello, se recomienda a los Usuarios revisar periódicamente para estar informado de posibles cambios.</p>
+      <p>Se considerará que el Usuario acepta expresamente dichas modificaciones o actualizaciones si no manifiesta su oposición dentro del plazo indicado, o si vuelve a contratar los servicios ofrecidos por ELEVATED365 a través del Sitio Web, o a acceder, navegar y/o utilizar el Sitio Web.</p>
+      <p>Las nuevas Condiciones de Contratación, una vez aceptadas por el Usuario sustituirán plenamente a las condiciones vigentes hasta ese momento, comenzando a surtir efecto en las nuevas suscripciones contratadas por el Usuario, a partir de la fecha de aceptación de las nuevas Condiciones de Contratación conforme se describe en el párrafo anterior.</p>
+      <p>La marcación de la casilla correspondiente en el proceso de contratación, así como el hecho de seguir telemáticamente todos los pasos de este, supone la aceptación expresa de las presentes Condiciones de Contratación por parte del Usuario, teniendo la misma validez que la firma presencial del mismo, conforme a la legislación vigente.</p>
+      <p>En todo caso, para poder contratar con ELEVATED365 el Usuario debe ser mayor de edad (&ge; dieciocho (18) años) y tener plena capacidad legal para suscribir contratos. De este modo, el Usuario manifiesta y garantiza ser una persona con capacidad suficiente para asumir las obligaciones derivadas de sus actuaciones a través del Sitio Web, que ha leído previamente y comprende el contenido y alcance de las Condiciones de Contratación, siendo el único responsable ante ELEVATED365 de la veracidad de dicha manifestación, y asumiendo la obligación de indemnizar a ELEVATED365 por cualesquiera daños acontezcan por la falsedad en dichas manifestaciones.</p>
+      <p>En caso de no estar de acuerdo con las presentes Condiciones de Contratación, el Usuario deberá abstenerse inmediatamente de acceder, navegar o utilizar el Sitio Web, así como de realizar cualquier acción orientada a la adquisición de los Productos o al uso de los servicios.</p>
+      <p>Todo el proceso de contratación será realizado en el idioma castellano.</p>
+
+      <!-- 3. FUNCIONAMIENTO DEL SITIO WEB -->
+      <h2 id="funcionamiento">3. Funcionamiento del sitio web</h2>
+      <p>El Sitio Web está destinado a la oferta de servicios, programas y suscripciones para usuarios que quieran acceder a contenidos y experiencias exclusivas (en adelante, los "Productos"), así como programas y suscripciones premium (en adelante, los "Programas y Suscripciones Premium") y que podrán ser contratados por los Usuarios, de conformidad con lo dispuesto en las presentes Condiciones de Contratación.</p>
+      <p>Durante el proceso de contratación, se requerirán al Usuario los datos necesarios para gestionar su pedido, debiendo facilitarse los datos completos, reales y veraces, dado que será la única forma que tendremos de poder ofrecer los Productos de forma correcta y gestionar las contrataciones que realice, así como, en su caso, contactar con nuestros Usuarios.</p>
+      <p>Bajo ningún concepto ELEVATED365 se responsabilizará de la veracidad de los datos facilitados por los Usuarios, por lo que cada uno de ellos será responsable de las posibles consecuencias, errores y fallos que posteriormente puedan derivarse de la falta de calidad de los datos.</p>
+      <p>Durante la contratación del Producto, es posible que se le solicite la aportación de un correo electrónico y una contraseña, dependiendo del tipo de Producto. Para ello, el Usuario deberá seguir las instrucciones indicadas por ELEVATED365 durante el proceso de registro. Así, el Usuario podrá iniciar sesión en el servicio contratado introduciendo su correo electrónico y contraseña.</p>
+      <p>La contraseña deberá ser generada por el Usuario de acuerdo con las reglas de robustez y complejidad que se establezcan en cada momento por el Titular. La contraseña creada por el Usuario tendrá una validez temporal ilimitada, solamente supeditada al tiempo que permanezca el Sitio Web, o la sección de este que requiera acceso mediante contraseña, en activo.</p>
+      <p>Sin perjuicio de lo anterior, el Usuario podrá modificar su contraseña en cualquier momento, mediante las herramientas puestas a su disposición por el Titular a través del Sitio Web.</p>
+      <p>El Usuario asume que la contraseña y la cuenta de acceso son personales e intransferibles, y se compromete a hacer un uso diligente de su contraseña y mantenerla en secreto, no pudiendo transmitirla a ningún tercero. En consecuencia, los Usuarios serán responsables de la adecuada custodia y confidencialidad de cualesquiera identificadores y/o contraseñas que hayan seleccionado al facilitar sus datos durante el proceso de compra, y se comprometen a no ceder su uso a terceros, ya sea temporal o permanente, ni permitir el acceso de terceros a su cuenta.</p>
+      <p>El Usuario será responsable de la utilización lícita del Sitio Web, respondiendo por cualesquiera daños que un tercero que acceda al mismo utilizando sus credenciales de acceso.</p>
+      <p>En virtud de lo anterior, es obligación del Usuario notificar de forma inmediata al Titular acerca de cualquier hecho que permita el uso indebido de los identificadores y/o contraseñas, tales como el robo, extravío, o el acceso no autorizado a los mismos, con el fin de proceder a su inmediata cancelación. Mientras no se comuniquen tales hechos, el Titular quedará eximido de cualquier responsabilidad que pudiera derivarse del uso indebido de los identificadores o contraseñas por terceros no autorizados.</p>
+      <p>Todas las comunicaciones con el Usuario por parte de ELEVATED365 se realizarán de forma electrónica, a través de los medios identificados en las presentes Condiciones de Contratación.</p>
+
+      <!-- 4. REGLAS DE USO DEL SITIO WEB -->
+      <h2 id="reglas">4. Reglas de uso del sitio web</h2>
+      <p>Serán de exclusiva responsabilidad del Usuario el acceso, navegación o utilización del Sitio Web y de los Productos con fines ilegítimos y/o ilícitos. A modo enunciativo, pero no limitativo, queda prohibido aquellos usos descritos en el <a href="/aviso-legal">Aviso Legal</a> del Sitio Web.</p>
+
+      <!-- 5. CONTRATACIÓN ELECTRÓNICA -->
+      <h2 id="contratacion">5. Contratación electrónica</h2>
+      <p>De conformidad con lo dispuesto en el artículo 23 de la Ley 34/2002, de 11 de julio, de servicios de la sociedad de la información y de comercio electrónico (en adelante, la "LSSI"), los contratos celebrados por vía electrónica producirán todos los efectos previstos por el ordenamiento jurídico, cuando concurran el consentimiento y los demás requisitos necesarios para su validez.</p>
+      <p>En todo caso, el soporte electrónico en que consten las presentes Condiciones de Contratación celebrado por vía electrónica será admisible como prueba documental en caso de controversia entre los Usuarios y ELEVATED365.</p>
+      <p>A estos efectos, se entenderá que el seguimiento de todas las fases del proceso de compra y, en su caso, el abono de la cantidad económica correspondiente implica necesariamente la prestación del consentimiento por el Usuario, requerido para la contratación, de conformidad con la legislación aplicable.</p>
+      <p>Del mismo modo, y atendiendo a lo dispuesto en el artículo 27 de la LSSI, se pone a disposición de los Usuarios, de forma previa al inicio del procedimiento de contratación, toda la información relativa al mismo, que únicamente será de aplicación en caso de que el Usuario decida proceder a la contratación a través del Sitio Web.</p>
+
+      <h3>5.1 Información previa</h3>
+      <p>Las presentes Condiciones de Contratación se encuentran a disposición de todos los Usuarios del Sitio Web desde el siguiente link <a href="https://elevated365.club/condiciones-generales-contratacion" target="_blank" rel="noopener">https://elevated365.club/condiciones-generales-contratacion</a> de forma libre y gratuita.</p>
+      <p>El acceso al proceso de contratación es completamente gratuito, sin que exista ningún coste asociado adicional aparte de los propios derivados de la disposición de conexión a Internet por parte del Usuario y aquellos debidos a la adquisición de los servicios.</p>
+      <p>Los Productos ofrecidos por ELEVATED365 se encuentran perfectamente descritos en el Sitio Web, no entendiéndose incluidas cualesquiera cuestiones que expresamente no hayan sido indicadas.</p>
+      <p>El contrato entre ELEVATED365 y el usuario se entiende perfeccionado desde el mismo momento en que el Usuario finalice el procedimiento de contratación, entendiéndose que el seguimiento de todas las fases del procedimiento de contratación electrónica y la inclusión de todos los datos solicitados suponen, junto con la marcación de la casilla correspondiente relativa a la aceptación de las presentes Condiciones de Contratación, una manifestación directa de la voluntad del Usuario de aceptar las presentes Condiciones.</p>
+      <p>ELEVATED365, como prestador de un servicio de la sociedad de la información, archivará el documento electrónico en que se formaliza el contrato con los Usuarios. Dicho documento electrónico será accesible para el Usuario mediante el vínculo que se le facilitará, desde donde podrá descargarlo e imprimirlo, y donde se incluirán las presentes Condiciones de Contratación.</p>
+      <p>ELEVATED365 introducirá medios técnicos adecuados y suficientes para identificar y corregir errores técnicos en la gestión de la información en cuanto resulte de su responsabilidad.</p>
+      <p>El idioma en que se tramitará el procedimiento de contratación y en el que se formalizará el contrato será, salvo indicación en contrario, el castellano.</p>
+
+      <h3>5.2 Procedimiento de contratación</h3>
+      <p>El procedimiento de contratación de los Productos ofrecidos por ELEVATED365 se lleva a cabo de forma completamente electrónica a través del Sitio Web. Cualquier Usuario con acceso a Internet puede llevar a cabo la contratación, siendo de acceso público todos los Productos y Programas y Suscripciones Premium ofrecidos a través del Sitio Web, sin que exista restricción alguna en su visualización.</p>
+      <p>El procedimiento completo que deberán seguir todos los Usuarios que deseen contratar los Productos ofrecidos por ELEVATED365 a través del Sitio Web será el siguiente:</p>
+      <ol>
+        <li>Una vez el Usuario haya accedido al Sitio Web de ELEVATED365, deberá seleccionar aquellos servicios que desee realizar y proceder a su adquisición mediante el proceso de contratación del Sitio Web. Es importante que el Usuario revise las descripciones del servicio, así como condiciones, plazos y precios finales;</li>
+        <li>Todos los servicios que el Usuario haya seleccionado podrán ser eliminados si el Usuario ya no desease adquirir todos o alguno de ellos. Si, por el contrario, el Usuario desease continuar con la compra de los servicios, deberá leer y aceptar expresamente las presentes Condiciones de Contratación, así como la Política de Privacidad.</li>
+        <li>A continuación, el Usuario deberá introducir el método de pago deseado, de entre las ofrecidas por ELEVATED365 en el Sitio web, que son las siguientes:
+          <ul>
+            <li>Tarjeta de crédito o débito; y</li>
+            <li>Transferencia bancaria, a la cuenta facilitada por ELEVATED365.</li>
+          </ul>
+        </li>
+      </ol>
+      <p>En ningún momento ELEVATED365 tendrá acceso a sus datos bancarios, siendo éstos directamente gestionados por parte de las entidades bancarias correspondientes en nuestra pasarela de pagos.</p>
+      <ol start="4">
+        <li>Una vez finalizado este proceso, se mostrará una pantalla resumen de la compra realizada, sin perjuicio de que el Usuario recibirá automáticamente un correo electrónico de confirmación de que la compra se ha realizado con éxito.</li>
+      </ol>
+      <p>En dicho correo se describirán las características de la suscripción del Usuario, sirviendo este documento como acreditación para cualquier tipo de reclamación.</p>
+      <p>En caso de no recibir dicho correo electrónico, el Usuario deberá revisar su bandeja de "correo no deseado" o "spam" y, si no se encontrase en ese apartado, deberá comunicarlo lo antes posible a ELEVATED365, a través de los datos de contacto incluidos en las presentes Condiciones de Contratación.</p>
+
+      <h3>5.3 Condiciones económicas</h3>
+      <p>El precio de los Productos ofrecidos por ELEVATED365 a través del Sitio Web se encuentra indicado junto a la ficha descriptiva de cada uno de los servicios, siendo mostrados en todo caso en la moneda de curso oficial en la Unión Europea, el Euro (&euro;).</p>
+
+      <h3>5.3.1 Precios</h3>
+      <p>El precio vigente de los servicios ofrecidos por ELEVATED365 será el indicado en cada momento en el Sitio Web junto a su descripción, siendo éstos de acceso público y pudiendo visualizarlos en cualquier momento.</p>
+      <p>Asimismo, se informa al Usuario de que los precios también se pueden mostrar en otras divisas, pudiendo efectuarse el pago en las mismas. Al precio en Euros se les aplicará el tipo de cambio vigente, el cual se actualizará, al menos, de forma diaria.</p>
+      <p>A este cambio se le aplicará un coste adicional asociado a las comisiones bancarias y a los gastos de gestión en los que incurra ELEVATED365. En cualquier caso, se le informara expresamente de esta circunstancia, así como de cualesquiera cantidades adicionales devengadas conforme se describe anteriormente, en el momento de efectuar el cambio de divisa y el pago correspondiente.</p>
+      <p>El precio mostrado es en cualquier caso el precio final, quedando expresamente incluido el Impuesto sobre el Valor Añadido (en adelante, "IVA") y cualesquiera otros gastos aplicables. No obstante, el precio final incluirá todos aquellos incrementos o descuentos que sean de aplicación, gastos repercutidos al Usuario y gastos adicionales por servicios accesorios, medios de pago, entre otros.</p>
+      <p>Todos los precios publicados en el Sitio web incluyen los impuestos aplicables, salvo que se indique expresamente lo contrario. En el momento de la compra, el Usuario será informado del precio total, incluidos impuestos y, en su caso, gastos adicionales aplicables.</p>
+      <p>En cualquier caso, todos estos importes serán mostrados al Usuario de forma desglosada durante el proceso de contratación.</p>
+
+      <h3>5.3.2 Abono y facturación</h3>
+      <p>Una vez el Usuario haya contratado los Productos y abonado el pago correspondiente, ELEVATED365 remitirá al Usuario un correo electrónico en el que se recogerá toda la información relativa a los Productos adquiridos, su precio, los impuestos aplicables, así como, la duración del contrato, la forma en que el Usuario podrá cancelar los Productos, así como cualesquiera cuestiones relevantes relacionadas con el proceso de contratación.</p>
+      <p>En todo caso, el abono de cantidades económicas a través de Internet será realizado a través del Sitio Web provista por parte de una entidad financiera externa, que en todo caso se encontrará alojada en un sitio web bajo protocolo seguro SSL. Para su identificación, el Usuario deberá confirmar que la dirección web de la página desde donde va a realizar el pago comienza con https://.</p>
+      <p>En cualquier caso, la compraventa de los Productos solo se considerará efectiva cuando ELEVATED365 haya recibido confirmación del pago y haya enviado la confirmación de compra al Usuario. Hasta dicho momento, no existirá ninguna obligación contractual entre ELEVATED365 y el Usuario. Si la transacción resultase por algún motivo denegada por dicha entidad, o no se aportase la cantidad íntegra correspondiente al importe de los Productos (incluidos recargos por gastos de gestión y comisiones de transferencia bancaria), la compra se suspenderá, informando al Usuario de que la transacción no ha sido finalizada.</p>
+      <p>Una vez recibido el pago completo, ELEVATED365, a través del correo electrónico: <a href="mailto:info@elevated365.club">info@elevated365.club</a>, remitirá la factura correspondiente a la contratación realizada al correo electrónico del Usuario de manera automática. La solicitud de factura se entenderá como un consentimiento expreso para recibir la factura electrónicamente. Si el Usuario desea recibir la factura en papel, puede ponerse en contacto con ELEVATED365 indicando la dirección postal a la que se deberá enviar la factura. Se podrá emitir la factura directamente al Usuario como autónomo o a la empresa para la que el Usuario trabaja.</p>
+      <p>Asimismo, conforme a la legislación vigente, ELEVATED365 no podrá modificar posteriormente la facturación de las ventas realizadas. Por ello, la factura se emitirá a nombre de la persona física que contrate los Productos, por lo que el Usuario deberá asegurarse de realizar el pedido al nombre correcto, no pudiéndose emitir facturas duplicadas para enviárselas a terceros, ni podrán éstas emitirse transcurrido el plazo de garantía.</p>
+
+      <!-- 6. DERECHO DE DESISTIMIENTO Y GARANTÍAS -->
+      <h2 id="desistimiento">6. Derecho de desistimiento y garantías</h2>
+
+      <h3>6.1 Derecho de desistimiento</h3>
+      <p>De conformidad con lo dispuesto en el Real Decreto Legislativo 1/2007, de 16 de noviembre, por el que se aprueba el texto refundido de la Ley General para la Defensa de los Consumidores y Usuarios y otras leyes complementarias (en adelante, "LGDCU"), a continuación, se informa a los Usuarios de los siguientes aspectos:</p>
+      <p>ELEVATED365 informa al Usuario de que, en relación exclusivamente con los Programas y Suscripciones Premium, en virtud del artículo 102.m) de la LGDCU, el Usuario tendrá derecho a desistir del contrato durante un periodo de <strong>CATORCE (14) días naturales</strong> a contar desde el pago de la reserva de la inscripción, sin indicar el motivo y sin incurrir en ningún coste distinto de los previstos en los artículos 107.2 y 108 LDCU (en adelante, el "Derecho de Desistimiento").</p>
+      <p>El Usuario que desee ejercer su Derecho de Desistimiento, deberá seguir en todo caso los siguientes pasos:</p>
+      <ol>
+        <li>El Usuario deberá, dentro del plazo de CATORCE (14) días naturales a contar desde el pago de la reserva de la inscripción, comunicar a ELEVATED365 su deseo de ejercer su Garantía a través de cualquiera de las vías de atención al cliente, cumplimentando el formulario de ejercicio de Derecho de Desistimiento [URL FORMULARIO DE DESISTIMIENTO].</li>
+        <li>Una vez recibida la solicitud de ejercicio del Derecho de Desistimiento, ELEVATED365 enviará un correo electrónico al Usuario confirmando que se ha recibido su solicitud.</li>
+        <li>Posteriormente, se procederá a realizar el reembolso correspondiente a la cantidad económica abonada por el Usuario inicialmente, en el plazo máximo de CATORCE (14) días desde el momento de la recepción de la solicitud de ejercicio del Derecho de Desistimiento.</li>
+      </ol>
+      <p>En todo caso, el abono de las cantidades económicas será realizado a través del medio utilizado para realizar el pago inicial.</p>
+      <p>ELEVATED365 informa al Usuario de que, en relación con los Productos, en virtud del artículo 103.m) de la LGDCU, no existirá derecho de desistimiento, en tanto la ejecución del contrato comienza en el momento que se realiza al pago, y se facilita el Producto de forma automática.</p>
+      <p>El Usuario reconoce expresamente que, al realizar el pago y acceder a los Productos, pierde automáticamente su derecho de desistimiento en relación con los Productos; sin perjuicio de la posibilidad de ejercicio de la Garantía Comercial establecida en estas Condiciones de Contratación.</p>
+      <p>Dado que el derecho de desistimiento no aplica con respecto a los Productos en ninguno de los supuestos mencionados, ELEVATED365 no estará obligada a aceptar solicitudes de desistimiento, salvo en aquellos casos en los que, por razones excepcionales y a su entera discreción, decida hacerlo, en cuyo caso ELEVATED365 evaluará cada caso individualmente.</p>
+      <p>Para trasladar una solicitud de ejercicio del derecho de desistimiento, el Usuario deberá enviar un correo electrónico a <a href="mailto:info@elevated365.club">info@elevated365.club</a> trasladando la solicitud correspondiente.</p>
+
+      <h3>6.2 Atención al Usuario y puntos de contacto</h3>
+      <p>ELEVATED365 como responsable del Sitio Web y encargado de la comercialización de los Productos ofrecidos a través del Sitio Web, pone a disposición de los Usuarios un servicio de atención al cliente, disponible de lunes a jueves, en horario de 9:00 a 20:00, y viernes de 9:00 a 15:00, en el que se dará debida atención a todas las consultas, quejas y sugerencias planteadas en relación con la suscripción de cualquiera de los Productos.</p>
+      <p>En concreto, las vías de contacto puestas a disposición de los Usuarios son las siguientes:</p>
+      <div class="legal-info-card">
+        <p><strong>Correo electrónico:</strong> <a href="mailto:info@elevated365.club">info@elevated365.club</a></p>
+        <p><strong>Formulario de contacto:</strong> <a href="https://www.elevated365.club/contacto" target="_blank" rel="noopener">www.elevated365.club/contacto</a></p>
+      </div>
+      <p>ELEVATED365 se compromete a hacer todo lo posible para responder a las reclamaciones o consultas recibidas en el menor tiempo posible y, en todo caso, en un plazo de treinta (30) días naturales.</p>
+      <p>Asimismo, ELEVATED365 ha designado un único punto de contacto en la siguiente dirección de correo: <a href="mailto:contacto@elevated365.club">contacto@elevated365.club</a>, para que las autoridades de los Estados Miembros, la Comisión Europea y el Consejo Europeo de Servicios Digitales se pongan en contacto con ELEVATED365 a los efectos del "Digital Services Act" ("DSA").</p>
+      <p>Este punto de contacto también estará disponible para que los destinatarios del servicio puedan remitir consultas relacionadas con la prestación de los servicios ofrecidos en el Sitio web.</p>
+      <p>Para las autoridades de los Estados Miembros que deseen notificar o tramitar una orden para que ELEVATED365 actúe contra cualesquiera contenidos ilegales o ilícitos, estas deberán dirigirse a los canales específicos que se les hayan proporcionado. A este respecto, las autoridades deberán velar por el cumplimiento de los requisitos del artículo 9(2) de la DSA.</p>
+      <p>Para las autoridades de los Estados miembros que deseen presentar una solicitud de información, en la siguiente dirección de correo: <a href="mailto:contacto@elevated365.club">contacto@elevated365.club</a>. Estas comunicaciones deberán cumplir en todo caso los requisitos establecidos en el artículo 10, apartado 2, de la DSA.</p>
+      <p>Todas las solicitudes deberán formularse en castellano.</p>
+
+      <!-- 7. GARANTÍA COMERCIAL -->
+      <h2 id="garantia">7. Garantía comercial de los productos y su alcance</h2>
+
+      <h3>7.1 Garantía Comercial de los Productos</h3>
+      <p>ELEVATED365, exclusivamente respecto de los Productos, otorga al Usuario una garantía extra (en adelante, la "Garantía Comercial") consistente en un derecho de reembolso del importe de los Productos previamente contratados, siempre y cuando, el Usuario solicite hacer uso de la Garantía Comercial en el plazo de <strong>CINCO (5) días naturales</strong> desde la puesta a disposición de los Productos y en la forma que se detalla a continuación.</p>
+      <p>El Usuario que desee ejercitar este derecho deberá seguir en todo caso los siguientes pasos:</p>
+      <ol>
+        <li>El Usuario deberá comunicar a ELEVATED365 su deseo de ejercer su Garantía Comercial a través de cualquiera de las vías de atención al cliente, cumplimentando el formulario de ejercicio de Garantía Comercial [URL FORMULARIO DE GARANTÍA COMERCIAL].</li>
+        <li>Una vez recibida la solicitud de ejercicio de la Garantía Comercial, ELEVATED365 enviará un correo electrónico al Usuario confirmando que se ha recibido su solicitud, tras lo cual el Usuario dejará de tener acceso a los Productos, debiendo el Usuario proceder a la eliminación de cualquier contenido al que hubiera tenido acceso; ya que de lo contrario no podrá ejercer esta Garantía Comercial.</li>
+        <li>Posteriormente, se procederá a realizar el reembolso correspondiente a la cantidad económica abonada por el Usuario inicialmente, en el plazo máximo de CATORCE (14) días desde el momento de la recepción de la solicitud de ejercicio de la Garantía Comercial.</li>
+      </ol>
+      <p>En todo caso, el abono de las cantidades económicas será realizado a través del medio utilizado por el Usuario para realizar el pago inicial.</p>
+
+      <h3>7.2 Alcance</h3>
+      <p>La Garantía Comercial se configura como un derecho adicional que ELEVATED365 concede voluntariamente al Usuario, exclusivamente en relación con los Productos, como muestra de su compromiso con la calidad de sus Productos.</p>
+      <p>En ningún caso la Garantía Comercial deberá confundirse con el Derecho de Desistimiento, excluido expresamente conforme a lo establecido en las presentes Condiciones de Contratación.</p>
+
+      <!-- 8. PROPIEDAD INTELECTUAL -->
+      <h2 id="propiedad">8. Propiedad intelectual</h2>
+      <p>ELEVATED365 es titular o, en su caso, cuenta con las licencias correspondientes sobre los derechos de propiedad intelectual e industrial del Sitio web, así como los correspondientes a la información, materiales, productos y demás contenidos de la misma, incluidos, entre otros, el código fuente, diseños, estructura de navegación, imágenes, gráficos, textos, códigos de programación, bases de datos, marcas, logotipos y cualesquiera otros signos distintivos y elementos protegibles que se muestren o utilicen en el Sitio web.</p>
+      <p>En ningún caso se entenderá que el acceso, navegación y utilización del Sitio web por parte del Usuario implica una renuncia, transmisión, licencia o cesión total o parcial de ningún derecho de propiedad intelectual o industrial por parte de ELEVATED365.</p>
+      <p>Todos los derechos de propiedad intelectual e industrial sobre el Sitio web están reservados. Por lo tanto, queda expresamente prohibido modificar, copiar, reproducir, comunicar públicamente, transformar o distribuir total o parcialmente cualquier contenido del Sitio web sin la autorización previa, expresa y por escrito de ELEVATED365 o, en su caso, del titular de los derechos correspondientes.</p>
+      <p>De acuerdo con estas Condiciones de Contratación, y sin perjuicio de lo establecido en la cláusula 8.1 de las presentes Condiciones de Contratación, ELEVATED365 concede al Usuario la licencia limitada, personal, no transferible, revocable, no sublicenciable y no exclusiva para (i) el acceso y uso del Sitio Web, y (ii) la visualización por el Usuario de los contenidos vinculados a los Productos. Cualquier derecho que no se otorgue expresamente estará reservado por parte de ELEVATED365.</p>
+      <p>El Usuario, así como cualquier tercero, tendrán restringido con carácter enunciativo, pero no limitativo, llevar a cabo las siguientes acciones:</p>
+      <ul>
+        <li>Reproducir, modificar, preparar obras derivadas, distribuir, licenciar o explotar de cualquier forma del Sitio Web o los Productos, cuando no esté expresamente permitido por ELEVATED365</li>
+        <li>Descompilar o realizar ingeniería inversa sobre el Sitio web;</li>
+        <li>Enlazar, reflejar o enmarcar cualquier parte de la misma y/o de sus contenidos;</li>
+        <li>Desplegar o lanzar cualquier tipo de programa para realizar cualquier actuación relacionada con la prospección de datos o acciones tendentes a dañar la operatividad y funcionabilidad del Sitio Web; y</li>
+        <li>Retirar, modificar o cualquier actuación análoga tendente a alterar los derechos de ELEVATED365 sobre su/s marca/s registrada/s, el Sitio Web o sus Productos, o los de cualquier tercero.</li>
+      </ul>
+      <p>De igual forma, ningún contenido del Sitio Web podrá ser modificado, copiado, distribuido, enmarcado, reproducido, reutilizado, descargado, extraído, mostrado, transmitido o vendido, total o parcialmente, por ningún medio y bajo ninguna forma, sin el consentimiento previo y por escrito de ELEVATED365 o del titular legítimo de dichos contenidos.</p>
+      <p>Asimismo, queda prohibido eliminar o manipular las indicaciones de derechos de autor o cualquier otro crédito que identifique a los titulares de los derechos sobre los contenidos del Sitio Web, así como los dispositivos técnicos de protección, las impresiones digitales o cualquier mecanismo de protección o información incorporada al Sitio Web.</p>
+      <p>En todo caso, ELEVATED365 retendrá la titularidad en exclusiva sobre los derechos de propiedad intelectual e industrial asociados a los Productos.</p>
+      <p>El acceso por el Usuario a los Productos no supone la transferencia u otorgamiento de ningún derecho: (i) en relación con los Productos, salvo la licencia anteriormente mencionada; o (ii) a utilizar o mencionar de cualquier forma los nombres de empresa, logotipos, nombres de producto y servicio, marcas comerciales u otros elementos de naturaleza semejante, salvo en aquellos supuestos en los que ELEVATED365 lo autorice expresamente.</p>
+
+      <h3>8.1 Licencia de uso personal de los contenidos vinculados a los Productos</h3>
+      <p>ELEVATED365 otorga una licencia de uso mundial, no exclusiva, no sublicenciable a terceros, para el Usuario que ha comprado los Productos a través del Sitio Web, por la duración prevista por el Real Decreto Legislativo 1/1996, de 12 de abril, por el que se aprueba el texto refundido de la Ley de Propiedad Intelectual, regularizando, aclarando y armonizando las disposiciones legales vigentes sobre la materia ("Ley de Propiedad Intelectual").</p>
+      <p>Para evitar cualquier duda, los usos de la licencia no incluyen los derechos de reproducción, distribución, comunicación pública ni transformación, ni el derecho de colección de los contenidos vinculados a los Productos.</p>
+      <p>Únicamente se permite a través de la licencia el uso personal de los contenidos vinculados a los Productos, entendiéndose como uso personal todo aquel diferente del asociado con una posible explotación económica o empresarial de los mismos.</p>
+
+      <!-- 9. PRIVACIDAD -->
+      <h2 id="privacidad">9. Privacidad</h2>
+      <p>Puede encontrar la información relativa a cómo ELEVATED365 trata sus datos personales en nuestra <a href="/politica-privacidad">Política de Privacidad</a>.</p>
+
+      <!-- 10. RESPONSABILIDADES -->
+      <h2 id="responsabilidades">10. Responsabilidades</h2>
+      <p>Las partes se comprometen a cumplir con sus obligaciones legales y contractuales generadas en virtud del presentes Condiciones de Contratación.</p>
+      <p>Si una parte no cumple alguna de sus obligaciones u obstaculiza el cumplimiento por la otra parte de las suyas, se generará el derecho de esa otra parte a reclamar una indemnización por los daños y perjuicios causados, tanto por daño emergente como por lucro cesante.</p>
+      <p>Las partes responderán de las infracciones en que hubiesen incurrido personalmente, quedando indemne la parte contraria frente a cualquier error, culpa o negligencia no imputable a ella, y a todo perjuicio que se derivase de dichas infracciones o errores imputables a la otra parte contratante.</p>
+      <p>ELEVATED365 no será responsable en los casos descritos en el <a href="/aviso-legal">Aviso Legal</a> del Sitio Web con respecto a los Productos ofrecidos a través de esta. Asimismo, ELEVATED365 no será responsable en caso de indisponibilidad del Sitio Web o de la imposibilidad de contratar los Productos cuando ello sea por circunstancias ajenas a ELEVATED365, fuerza mayor o error en el proceso de contratación o datos facilitados por el Usuario. Sin embargo, en dichos casos, ELEVATED365 se pondrá en contacto con el Usuario a fin de encontrar la mejor solución posible al caso.</p>
+      <p>ELEVATED365 empleará todos los esfuerzos comercial y técnicamente a su alcance para mantener los servicios ofrecidos a través del Sitio Web, lo que constituye una obligación que, no obstante, no alcanzará a cualquier falta de disponibilidad o de rendimiento provocada por:</p>
+      <ul>
+        <li>Inactividad temporal del Sitio Web debido a actualización y/o mantenimiento técnico, de lo que se informará previamente mediante publicación en el propio Sitio Web en un plazo máximo de 48 horas, siempre que estas circunstancias sean conocidas o comunicadas a ELEVATED365 con un plazo de antelación superior al indicado;</li>
+        <li>Causas ajenas al control de ELEVATED365: fuerza mayor, problemas de acceso a Internet, problemas tecnológicos más allá de la gestión diligente y razonable del titular del Sitio Web, acciones u omisiones de terceros, etc.</li>
+      </ul>
+      <p>En todos los casos referidos, ajenos al control y la diligencia debida por ELEVATED365, no habrá lugar a indemnización de ésta al Usuario por lucro cesante, daños o perjuicios.</p>
+      <p>En caso de cierre o suspensión del Sitio Web por causas ajenas a la actuación de las partes, se informará puntualmente al usuario del traslado del servicio a un nuevo dominio, modificándose únicamente las estipulaciones del presente contrato en lo relativo al dominio en que el Sitio Web permanece activo.</p>
+
+      <h3>10.1 Responsabilidad del Usuario</h3>
+      <p>El Usuario es responsable de:</p>
+      <ul>
+        <li>Cumplir con las presentes Condiciones de Contratación, incluyendo el pago de los precios correspondientes.</li>
+        <li>Abstenerse de realizar actos que contravengan estas Condiciones de Contratación, así como cualquier otra normativa vigente en el Sitio Web, la ley, la moral, las costumbres o normas sociales generalmente aceptadas y el orden público.</li>
+        <li>Cumplir con sus obligaciones legales y contractuales generadas en virtud de este documento y responder de las infracciones en que hubiese incurrido personalmente, manteniendo a ELEVATED365 indemne frente a cualquier error, culpa o negligencia que no le fuera imputable, así como de los daños y perjuicios que se derivasen de dichas infracciones o errores.</li>
+        <li>Asumir cualquier daño o pérdida que pueda derivarse de un uso indebido, negligencia o incumplimiento en la utilización del Sitio Web y/o de los Productos, incluyendo, a título enunciativo, las Condiciones de Contratación, la legislación aplicable y/o cualquier instrucción o información proporcionada por ELEVATED365.</li>
+        <li>Garantizar la exactitud e integridad de la información proporcionada al aceptar y ejecutar las Condiciones de Contratación.</li>
+        <li>Indemnizar, defender y eximir a ELEVATED365, incluyendo a sus empleados, colaboradores, directores, administradores y representantes, de y contra cualquier coste, reclamación, demanda, responsabilidad, gasto, pérdida o daño, incluyendo honorarios legales, que surjan o resulten del uso del Sitio Web y de los Productos adquiridos a través de este. Esta obligación de indemnización también se extiende a los honorarios legales en los que ELEVATED365 incurra razonablemente al investigar o hacer valer sus derechos en virtud de estas Condiciones de Contratación.</li>
+      </ul>
+
+      <h3>10.2 Responsabilidad de ELEVATED365</h3>
+      <p>Los Usuarios reconocen y aceptan expresamente que, con el máximo legalmente aplicable, la responsabilidad de ELEVATED365 se limita estrictamente a los siguientes conceptos:</p>
+      <ul>
+        <li>la gestión de las contrataciones que los Usuarios realicen a través del Sitio web, así como la intermediación en los pagos a realizar sobre los Productos;</li>
+        <li>la responsabilidad derivada de la legislación aplicable, respecto del contenido que pone a disposición de los Usuarios en el Sitio web.</li>
+      </ul>
+      <p>Fuera de estos supuestos, y con el máximo permitido por la legislación aplicable, ELEVATED365 declina cualquier responsabilidad frente a los Usuarios, salvo en la medida en que expresamente se disponga lo contrario en las presentes Condiciones de Contratación. En consecuencia, ELEVATED365 no garantiza ni se hace responsable de:</p>
+      <ul>
+        <li>La ausencia de virus, troyanos, gusanos, bombas lógicas y/o demás componentes maliciosos o tecnológicamente dañinos en el Sitio web o en el servidor que lo suministra.</li>
+        <li>Los daños producidos en los equipos informáticos de los Usuarios o de terceros durante el uso del Sitio web.</li>
+        <li>La invulnerabilidad del Sitio web y/o la imposibilidad de vulnerar las medidas de seguridad que se adopten en ella.</li>
+        <li>La falta de utilidad o rendimiento de los contenidos del Sitio web.</li>
+        <li>Las interrupciones o fallos del Sitio web producidos por cualquier tipo de ataque a los servidores propios o a los de terceros proveedores, así como los fallos o desconexiones en las redes de telecomunicaciones que produzcan la suspensión, cancelación o interrupción del servicio durante la prestación del mismo o con carácter previo;</li>
+        <li>Cualquier fallo técnico de cualquier tipo que dificulte, retrase o impida el correcto funcionamiento del Sitio web.</li>
+        <li>Los daños o perjuicios que cause, a sí mismo o a un tercero, cualquier persona que infringiera las condiciones, normas e instrucciones que ELEVATED365 establece en relación con el Sitio web o a través de la vulneración de sus sistemas de seguridad.</li>
+      </ul>
+      <p>No obstante, ELEVATED365 llevará a cabo sus mayores esfuerzos para que los contenidos, datos o informaciones relativos a los Productos ofrecidos a través del Sitio Web sean fiables, veraces y exactos; haciéndose responsable de los precios y características anunciados, salvo que éstos fueran manifiestamente erróneos, o, su falta de exactitud se deba a causas no imputables a ELEVATED365. Sin perjuicio de lo anterior, ELEVATED365 no se hará responsable de aquellas informaciones que hubieran sido introducidas, mostradas o modificadas por terceros ajenos a ELEVATED365.</p>
+      <p>Cualesquiera fotografías, textos, grafismos, informaciones o características reproducidos que ilustren los Productos no son contractuales, por lo que pueden variar. No obstante, siempre se velará por que la descripción de estos sea lo más ajustada posible a la realidad.</p>
+      <p>ELEVATED365 no será responsable de los enlaces incluidos en el Sitio Web de conformidad con lo establecido en su <a href="/aviso-legal">Aviso Legal</a>.</p>
+      <p>Si cualquier Usuario tuviera conocimiento de la publicación de algún dato inexacto, desactualizado y falso o de la existencia de algún contenido ilícito, ilegal, contrario a las leyes o que pudiera suponer una infracción de derechos de propiedad intelectual o industrial, de la normativa aplicable en materia de protección de datos personales y/o de cualquier otro derecho, deberá notificarlo inmediatamente a ELEVATED365 para que esta pueda proceder a la adopción de las medidas oportunas.</p>
+      <p>Nada en lo dispuesto en el presente apartado pretende limitar o excluir cualquier responsabilidad de ELEVATED365 derivada de dolo o negligencia grave, así como cualquier otra responsabilidad que, conforme a la legislación aplicable, no pueda ser excluida o limitada.</p>
+
+      <!-- 11. CLÁUSULA DE SALVAGUARDA -->
+      <h2 id="salvaguarda">11. Cláusula de salvaguarda</h2>
+      <p>Todas las cláusulas o extremos de las presentes Condiciones de Contratación deben ser interpretadas de forma independiente y autónoma, no viéndose afectadas el resto de las estipulaciones en caso de que una de ellas haya sido declarada nula por sentencia judicial o resolución arbitral firme. Se sustituirá la cláusula o cláusulas afectadas por otra u otras que preserven los efectos perseguidos por las Condiciones de Contratación del Sitio Web.</p>
+
+      <!-- 12. LEY APLICABLE Y JURISDICCIÓN -->
+      <h2 id="legislacion">12. Ley aplicable y jurisdicción competente. Resolución de las controversias</h2>
+      <p>Las presentes Condiciones de Contratación, incluyendo el uso del Sitio Web y los Productos se rigen por la legislación española aplicable en cada momento.</p>
+      <p>En caso de controversia, acción o reclamación que pudiera surgir en relación con la interpretación y aplicación de las Condiciones de Contratación, las partes aceptan someterse a la jurisdicción exclusiva de los Juzgados y Tribunales de la ciudad de Madrid, España, con renuncia expresa y voluntaria a cualquier otro fuero, salvo disposición legal en contrario.</p>
+      <p>Para presentar reclamaciones en el uso de nuestros Productos, puede dirigirse por correo a la dirección electrónica o física indicada en las presentes Condiciones de Contratación, comprometiéndose ELEVATED365 a buscar en todo momento una solución amistosa del conflicto.</p>
+      <p>Asimismo, según lo establecido en el Reglamento (UE) n&ordm; 524/2013 del Parlamento Europeo y del Consejo, de 21 de mayo de 2013, relativo a la resolución de litigios en línea en materia de consumo, el Usuario, podrá acudir a la "Plataforma de Resolución de Controversias de la Comisión" para intentar resolver extrajudicialmente cualquier controversia que se derive de la prestación de los Productos por ELEVATED365, a través del siguiente enlace: <a href="https://ec.europa.eu/consumers/odr/main/index.cfm" target="_blank" rel="noopener">https://ec.europa.eu/consumers/odr/main/index.cfm</a></p>
+
+      <!-- Updated & Copyright -->
+      <div class="legal-updated">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        Última actualización: marzo de 2026
+      </div>
+      <p class="legal-copyright">Copyright &copy; Gordezalo, S.L., 2026. Todos los derechos reservados.</p>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="brand_assets/logo_white_elevate.png" alt="Elevate Dynamics 365">
+        <p>Formación profesional para el ecosistema Microsoft Dynamics 365 y Power Platform. Creado por profesionales, para la próxima generación de consultores.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Programas</h4>
+        <ul>
+          <li><a href="/#programs">Introducción a D365</a></li>
+          <li><a href="/#programs">Contabilidad y Finanzas</a></li>
+          <li><a href="/#programs">Gestión de Productos</a></li>
+          <li><a href="/#programs">Compras y Abastecimiento</a></li>
+          <li><a href="/#programs">Clientes y Cobros</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="/#teachers">Nuestros Profesores</a></li>
+          <li><a href="/curso/">Acceso Alumnos</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="/aviso-legal">Aviso Legal</a></li>
+          <li><a href="/politica-privacidad">Política de Privacidad</a></li>
+          <li><a href="/politica-cookies">Política de Cookies</a></li>
+          <li><a href="/condiciones-legales">Condiciones Legales</a></li>
+          <li><a href="/condiciones-generales-contratacion" style="color:rgba(255,255,255,.8);">Condiciones de Contratación</a></li>
+          <li><a href="mailto:hola@elevated365.club">hola@elevated365.club</a></li>
+          <li><a href="/#faq">Preguntas Frecuentes</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 Elevate Dynamics 365. Todos los derechos reservados.</p>
+      <div class="footer-socials">
+        <a href="#" class="soc-link" aria-label="LinkedIn">in</a>
+        <a href="#" class="soc-link" aria-label="Twitter / X">&#x1D54F;</a>
+        <a href="#" class="soc-link" aria-label="YouTube">&#9654;</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
