@@ -10,5 +10,5 @@ https://www.elevated365.club/* https://elevated365.club/:splat 301
 /condiciones-legales /condiciones-legales.html 200
 /condiciones-generales-contratacion /condiciones-generales-contratacion.html 200
 
-# Custom 404
-/* /index.html 404
+# 404 fallback — without force flag, static files take priority
+/* /index.html 200
