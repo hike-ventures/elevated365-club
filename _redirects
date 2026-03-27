@@ -1,14 +1,16 @@
 # Redirect www to apex domain
 https://www.elevated365.club/* https://elevated365.club/:splat 301
 
-# Ensure /thank-you resolves (already handled by /thank-you/index.html but as fallback)
+# Ensure /thank-you resolves
 /thank-you /thank-you/index.html 200
 
-# Legal pages
+# Legal pages — clean URLs
 /aviso-legal /aviso-legal.html 200
 /politica-cookies /politica-de-cookies.html 200
+/politica-de-cookies /politica-de-cookies.html 200
 /condiciones-legales /condiciones-legales.html 200
+/condiciones-generales /condiciones-generales-contratacion.html 200
 /condiciones-generales-contratacion /condiciones-generales-contratacion.html 200
 
-# 404 fallback — without force flag, static files take priority
-/* /index.html 200
+# SPA fallback — only for paths that don't match a static file
+/* /index.html 404
