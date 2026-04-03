@@ -69,9 +69,20 @@
 
   // ══════════════════════════════
   // SHARED: trackConversion()
+  // Fires Google Ads conversion + GA4 lead event + Meta Pixel
   // ══════════════════════════════
+
+  // Reemplaza AW-XXXXXXXXX/YYYYYYYYYY con tu Conversion ID / Conversion Label
+  var GADS_CONVERSION_ID = 'AW-XXXXXXXXX/YYYYYYYYYY';
+
   function trackConversion(source) {
     if (typeof gtag !== 'undefined') {
+      // Google Ads conversion (primary signal)
+      gtag('event', 'conversion', {
+        send_to: GADS_CONVERSION_ID,
+        event_callback: function() { /* conversion sent */ }
+      });
+      // GA4 lead event (secondary signal)
       gtag('event', 'generate_lead', {
         event_category: 'conversion',
         event_label: source,
@@ -84,6 +95,29 @@
         content_category: source
       });
     }
+  }
+
+  // Safe redirect: waits for gtag beacon, falls back after timeout
+  function safeRedirect(url, delay) {
+    setTimeout(function() {
+      var redirected = false;
+      function doRedirect() {
+        if (redirected) return;
+        redirected = true;
+        window.location.href = url;
+      }
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'conversion', {
+          send_to: GADS_CONVERSION_ID,
+          transport_type: 'beacon',
+          event_callback: doRedirect
+        });
+        // Fallback: redirect after 1s even if gtag callback doesn't fire
+        setTimeout(doRedirect, 1000);
+      } else {
+        doRedirect();
+      }
+    }, delay);
   }
 
 
@@ -101,10 +135,13 @@
 
   var mcFocusableSelector = 'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
   var mcPreviousFocus = null;
+  var mcInSuccessState = false;
+  var MC_REDIRECT_URL = '/m1-introduccion-d36-free?welcome=true&converted=1';
 
   function mcOpen() {
     if (window.mcLeadCaptured) {
       mcPreviousFocus = document.activeElement;
+      mcInSuccessState = true;
       mcFormView.style.display = 'none';
       mcSuccessV.classList.add('mc-visible');
       mcOverlay.classList.add('mc-active');
@@ -121,6 +158,10 @@
   }
 
   function mcClose() {
+    if (mcInSuccessState) {
+      window.location.href = MC_REDIRECT_URL;
+      return;
+    }
     mcOverlay.classList.remove('mc-active');
     document.body.style.overflow = '';
     if (mcPreviousFocus) mcPreviousFocus.focus();
@@ -237,14 +278,15 @@
       if (result.success) {
         trackConversion('popup-modal');
         mcShowSuccess();
-        setTimeout(function() { window.location.href = '/m1-introduccion-d36-free?welcome=true'; }, 3000);
+        safeRedirect(MC_REDIRECT_URL, 3000);
       } else if (result.error === 'duplicate') {
         markLeadCaptured();
+        mcInSuccessState = true;
         mcFormView.style.display = 'none';
         mcSuccessV.classList.add('mc-visible');
         mcSuccessV.querySelector('.mc-success-title').textContent = 'Ya estás registrado';
         mcSuccessV.querySelector('.mc-success-msg').textContent = 'Revisa tu email para los detalles de acceso.';
-        setTimeout(function() { window.location.href = '/m1-introduccion-d36-free?welcome=true'; }, 3000);
+        safeRedirect(MC_REDIRECT_URL, 3000);
       } else {
         mcSubmitBtn.classList.remove('mc-loading');
         mcSubmitBtn.disabled = false;
@@ -265,6 +307,7 @@
   }
   function mcShowSuccess() {
     markLeadCaptured();
+    mcInSuccessState = true;
     mcFormView.style.display = 'none';
     mcSuccessV.classList.add('mc-visible');
     mcSuccessCloseBtn.focus();
@@ -376,7 +419,7 @@
         slSuccessV.classList.add('sl-visible');
         slSuccessV.querySelector('.sl-success-title').textContent = 'Ya estás registrado';
         slSuccessV.querySelector('.sl-success-text').textContent = 'Revisa tu email para los detalles de acceso.';
-        setTimeout(function() { slClose(); }, 3000);
+        safeRedirect(SL_REDIRECT_URL, 3000);
       } else {
         slSubmitBtn.classList.remove('sl-loading');
         slSubmitBtn.disabled = false;
@@ -387,11 +430,13 @@
     });
   });
 
+  var SL_REDIRECT_URL = '/m1-introduccion-d36-free?welcome=true&converted=1';
+
   function slShowSuccess() {
     markLeadCaptured();
     slFormView.style.display = 'none';
     slSuccessV.classList.add('sl-visible');
-    setTimeout(function() { slClose(); }, 3000);
+    setTimeout(function() { window.location.href = SL_REDIRECT_URL; }, 3000);
   }
 
 })();

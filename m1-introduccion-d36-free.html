@@ -3,6 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google Ads Global Site Tag — Reemplaza AW-XXXXXXXXX con tu Conversion ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-XXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-XXXXXXXXX');
+  </script>
   <title>Curso Gratuito de Microsoft Dynamics 365 — Introducción a D365 Finance &amp; Supply Chain | Elevate D365</title>
   <meta name="description" content="Curso gratuito de Microsoft Dynamics 365 Finance & Supply Chain. 7 lecciones para empezar desde cero con el ecosistema D365. Aprende los fundamentos del ERP más demandado.">
   <link rel="canonical" href="https://elevated365.club/m1-introduccion-d36-free.html">
@@ -3953,6 +3961,26 @@
   }
 }
 </script>
+<!-- ══════════ GOOGLE ADS — Conversion signal on landing ══════════ -->
+<script>
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  if (params.get('converted') !== '1') return;
+  // Fire conversion event as secondary signal (page-view based)
+  if (typeof gtag !== 'undefined') {
+    gtag('event', 'conversion', {
+      send_to: 'AW-XXXXXXXXX/YYYYYYYYYY'  // Reemplaza con tu Conversion ID / Label
+    });
+  }
+  // Clean converted param from URL
+  params.delete('converted');
+  var clean = window.location.pathname;
+  var remaining = params.toString();
+  if (remaining) clean += '?' + remaining;
+  window.history.replaceState({}, '', clean);
+})();
+</script>
+
 <!-- ══════════ WELCOME POPUP — Post-registro ══════════ -->
 <style>
 .wp-overlay {

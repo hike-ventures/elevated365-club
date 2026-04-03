@@ -3,6 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Ads Global Site Tag — Reemplaza AW-XXXXXXXXX con tu Conversion ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-XXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-XXXXXXXXX');
+  </script>
   <title>Curso de Microsoft Dynamics 365 Finance &amp; Supply Chain | Elevate D365</title>
   <meta name="description" content="Curso de Microsoft Dynamics 365 Finance & Supply Chain. Formación práctica con consultores certificados, ejercicios en entorno real de D365, clases en vivo y acceso de por vida. Empieza gratis.">
   <link rel="canonical" href="https://elevated365.club/">
@@ -25,6 +33,9 @@
   <noscript><style>.fade-up{opacity:1!important;transform:none!important;}.faq-answer{opacity:1!important;max-height:none!important;}</style></noscript>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&display=swap" as="style">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -635,6 +646,74 @@
     @media (max-width: 600px) {
       .prog-sticky-card { padding: 32px 24px; border-radius: 20px; }
       .prog-sticky-wrap { padding-bottom: 80px; }
+    }
+
+    /* ── MOBILE ACCORDION for prog-sticky-cards ── */
+    @media (max-width: 768px) {
+      .prog-sticky-wrap { padding-bottom: 40px; }
+      .prog-sticky-card {
+        position: relative !important;
+        top: auto !important;
+        cursor: pointer;
+        margin-bottom: 12px;
+        padding: 24px 24px !important;
+      }
+      /* Header area: tag + title + toggle icon */
+      .prog-sticky-card > div:first-child > .prog-sc-tag { margin-bottom: 10px; }
+      .prog-sticky-card > div:first-child > .prog-sc-title {
+        font-size: 1.15rem !important;
+        margin-bottom: 0;
+        padding-right: 32px;
+      }
+      /* Toggle indicator */
+      .prog-sticky-card::after {
+        content: '';
+        position: absolute;
+        top: 32px; right: 24px;
+        width: 10px; height: 10px;
+        border-right: 2px solid var(--gray-400);
+        border-bottom: 2px solid var(--gray-400);
+        transform: rotate(45deg);
+        transition: transform .3s ease;
+      }
+      .prog-sticky-card.psc-open::after {
+        transform: rotate(-135deg);
+      }
+      /* Hide body content by default */
+      .prog-sticky-card > div:first-child > .prog-sc-desc,
+      .prog-sticky-card > div:first-child > .prog-sc-bullets,
+      .prog-sticky-card > div:first-child > .prog-sc-meta,
+      .prog-sticky-card > div:first-child > p,
+      .prog-sticky-card > div:first-child > .prog-sc-cta,
+      .prog-sticky-card > .prog-sc-img {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        margin-top: 0;
+        margin-bottom: 0 !important;
+        padding-top: 0;
+        padding-bottom: 0;
+        transition: max-height .4s ease, opacity .3s ease, margin .3s ease;
+      }
+      /* Expanded state */
+      .prog-sticky-card.psc-open > div:first-child > .prog-sc-desc {
+        max-height: 200px; opacity: 1; margin-top: 16px; margin-bottom: 24px !important;
+      }
+      .prog-sticky-card.psc-open > div:first-child > .prog-sc-bullets {
+        max-height: 300px; opacity: 1; margin-bottom: 28px !important;
+      }
+      .prog-sticky-card.psc-open > div:first-child > .prog-sc-meta {
+        max-height: 100px; opacity: 1; margin-bottom: 28px !important;
+      }
+      .prog-sticky-card.psc-open > div:first-child > p {
+        max-height: 100px; opacity: 1; margin-bottom: 24px !important;
+      }
+      .prog-sticky-card.psc-open > div:first-child > .prog-sc-cta {
+        max-height: 50px; opacity: 1;
+      }
+      .prog-sticky-card.psc-open > .prog-sc-img {
+        max-height: 250px; opacity: 1; margin-top: 24px;
+      }
     }
 
     /* ── WHY ── */
@@ -1289,8 +1368,8 @@
   <div class="container" style="max-width:100%; padding:0 24px 0 0;">
     <div class="nav-inner">
       <a href="/" class="nav-logo" aria-label="Elevate Dynamics 365 home">
-        <img class="nav-logo-light" src="brand_assets/logo_white_elevate.png" alt="Elevate Dynamics 365">
-        <img class="nav-logo-dark"  src="brand_assets/logo_black-elevate.png"  alt="Elevate Dynamics 365">
+        <img class="nav-logo-light" src="brand_assets/logo_white_elevate.png" alt="Elevate Dynamics 365" width="407" height="116" fetchpriority="high">
+        <img class="nav-logo-dark" src="brand_assets/logo_black-elevate.png" alt="Elevate Dynamics 365" width="538" height="158" loading="lazy">
       </a>
       <div style="display:flex; align-items:center; gap:40px;">
         <ul class="nav-links">
@@ -1321,7 +1400,13 @@
   <div class="hero-content">
     <div class="hero-badge float-anim">
       <div class="badge-dot"></div>
-      <span class="badge-text">Inscripciones abiertas — Cierran el 1 de abril</span>
+      <span class="badge-text">Inscripciones abiertas — Cierran el 30 de abril</span>
+    </div>
+
+    <!-- Social proof above the fold -->
+    <div style="display:flex; align-items:center; justify-content:center; gap:6px; margin-bottom:20px; font-family:var(--font-brand); font-size:.8rem; color:rgba(255,255,255,.6);">
+      <span style="color:#facc15; letter-spacing:1px;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <span>34 alumnos en lista de espera</span>
     </div>
 
     <h1>Conviértete en consultor de <em>Dynamics 365</em> en 5 semanas</h1>
@@ -1330,14 +1415,30 @@
       Formaci&oacute;n 100% pr&aacute;ctica en Dynamics 365, impartida por consultores que implementan D365 cada d&iacute;a. Somos la &uacute;nica escuela que se dedica &uacute;nica y exclusivamente a ense&ntilde;ar <strong style="white-space:nowrap;">Microsoft Dynamics 365</strong>.
     </p>
 
-    <div style="display:flex; flex-direction:column; align-items:center; gap:16px;">
+    <!-- Value prop bullets -->
+    <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:24px; margin-bottom:32px; font-family:var(--font-brand); font-size:.85rem; color:rgba(255,255,255,.75);">
+      <span style="display:flex; align-items:center; gap:6px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        5 semanas &middot; +24h de contenido
+      </span>
+      <span style="display:flex; align-items:center; gap:6px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        Master Class gratuita de acceso
+      </span>
+      <span style="display:flex; align-items:center; gap:6px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/><path d="M12 3v12"/><rect x="2" y="19" width="20" height="2" rx="1"/></svg>
+        Certificado + preparaci&oacute;n MB-310
+      </span>
+    </div>
+
+    <div style="display:flex; flex-direction:column; align-items:center; gap:12px;">
       <a href="#" class="hero-cta-masterclass trigger-masterclass-popup">
-        Me apunto a la pr&oacute;xima Master Class Gratuita
+        Apuntarme a la Master Class gratuita
         <svg class="cta-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
       </a>
-      <a href="#programs" class="hero-studies-link" style="color:rgba(255,255,255,.5); font-family:var(--font-brand); font-size:.875rem; text-decoration:none; transition:color .2s ease;">
-        Ver plan de estudios &darr;
-      </a>
+      <span style="font-family:var(--font-brand); font-size:.78rem; color:rgba(255,255,255,.45); text-align:center;">
+        Recibir&aacute;s el acceso por email en menos de 2 minutos. Sin tarjeta.
+      </span>
     </div>
   </div>
 
@@ -1428,28 +1529,28 @@
         <!-- Column 1: members 0 & 3 -->
         <div class="team-col">
           <div class="tphoto" data-member="0" style="width:155px;height:165px;">
-            <img src="brand_assets/Foto_David.jpg" alt="David Maqueda">
+            <img src="brand_assets/Foto_David.jpg" alt="David Maqueda" width="310" height="310" loading="lazy">
           </div>
           <div class="tphoto" data-member="3" style="width:155px;height:165px;">
-            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=500&fit=crop&crop=face" alt="James Okonkwo">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=500&fit=crop&crop=face" alt="James Okonkwo" width="400" height="500" loading="lazy">
           </div>
         </div>
         <!-- Column 2: members 1 & 4 -->
         <div class="team-col">
           <div class="tphoto" data-member="1" style="width:172px;height:182px;">
-            <img src="brand_assets/foto_ismael.jpg" alt="Ismael Maqueda">
+            <img src="brand_assets/foto_ismael.jpg" alt="Ismael Maqueda" width="200" height="200" loading="lazy">
           </div>
           <div class="tphoto" data-member="4" style="width:172px;height:182px;">
-            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=500&fit=crop&crop=face" alt="Emma Larsson">
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=500&fit=crop&crop=face" alt="Emma Larsson" width="400" height="500" loading="lazy">
           </div>
         </div>
         <!-- Column 3: members 2 & 5 -->
         <div class="team-col">
           <div class="tphoto" data-member="2" style="width:162px;height:172px;">
-            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=500&fit=crop&crop=face" alt="Priya Nair">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=500&fit=crop&crop=face" alt="Priya Nair" width="400" height="500" loading="lazy">
           </div>
           <div class="tphoto" data-member="5" style="width:162px;height:172px;">
-            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=500&fit=crop&crop=face" alt="David Park">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=500&fit=crop&crop=face" alt="David Park" width="400" height="500" loading="lazy">
           </div>
         </div>
       </div>
@@ -1639,7 +1740,7 @@
       <!-- ── SET 1 ── -->
       <div class="mcard">
         <div class="mcard-author">
-          <img class="mcard-avatar" src="brand_assets/testimonio-hector.jpg" alt="Héctor G.">
+          <img class="mcard-avatar" src="brand_assets/testimonio-hector.jpg" alt="Héctor G." width="96" height="96" loading="lazy">
           <div>
             <div class="mcard-name">Héctor G.</div>
             <div class="mcard-handle">Senior Consultant</div>
@@ -1650,7 +1751,7 @@
 
       <div class="mcard">
         <div class="mcard-author">
-          <img class="mcard-avatar" src="brand_assets/testimonio-nuria.jpg" alt="Nuria P.">
+          <img class="mcard-avatar" src="brand_assets/testimonio-nuria.jpg" alt="Nuria P." width="96" height="96" loading="lazy">
           <div>
             <div class="mcard-name">Nuria P.</div>
             <div class="mcard-handle">D365 Finance Lead</div>
@@ -1661,7 +1762,7 @@
 
       <div class="mcard">
         <div class="mcard-author">
-          <img class="mcard-avatar" src="brand_assets/testimonio-luis.jpg" alt="Luis A.">
+          <img class="mcard-avatar" src="brand_assets/testimonio-luis.jpg" alt="Luis A." width="96" height="96" loading="lazy">
           <div>
             <div class="mcard-name">Luis A.</div>
             <div class="mcard-handle">Power Platform Dev</div>
@@ -1672,7 +1773,7 @@
 
       <div class="mcard">
         <div class="mcard-author">
-          <img class="mcard-avatar" src="brand_assets/testimonio-elena.jpg" alt="Elena S.">
+          <img class="mcard-avatar" src="brand_assets/testimonio-elena.jpg" alt="Elena S." width="96" height="96" loading="lazy">
           <div>
             <div class="mcard-name">Elena S.</div>
             <div class="mcard-handle">Implementation Manager</div>
@@ -1683,7 +1784,7 @@
 
       <div class="mcard">
         <div class="mcard-author">
-          <img class="mcard-avatar" src="brand_assets/testimonio-pablo.jpg" alt="Pablo M.">
+          <img class="mcard-avatar" src="brand_assets/testimonio-pablo.jpg" alt="Pablo M." width="96" height="96" loading="lazy">
           <div>
             <div class="mcard-name">Pablo M.</div>
             <div class="mcard-handle">Business Analyst</div>
@@ -1694,7 +1795,7 @@
 
       <div class="mcard">
         <div class="mcard-author">
-          <img class="mcard-avatar" src="brand_assets/testimonio-juan.jpg" alt="Juan M.">
+          <img class="mcard-avatar" src="brand_assets/testimonio-juan.jpg" alt="Juan M." width="96" height="96" loading="lazy">
           <div>
             <div class="mcard-name">Juan M.</div>
             <div class="mcard-handle">CRM Consultant</div>
@@ -1706,7 +1807,7 @@
       <!-- ── SET 2 (duplicate for seamless loop) ── -->
       <div class="mcard" aria-hidden="true">
         <div class="mcard-author">
-          <img class="mcard-avatar" src="brand_assets/testimonio-hector.jpg" alt="">
+          <img class="mcard-avatar" src="brand_assets/testimonio-hector.jpg" alt="" width="96" height="96" loading="lazy">
           <div>
             <div class="mcard-name">Héctor G.</div>
             <div class="mcard-handle">Senior Consultant</div>
@@ -1717,7 +1818,7 @@
 
       <div class="mcard" aria-hidden="true">
         <div class="mcard-author">
-          <img class="mcard-avatar" src="brand_assets/testimonio-nuria.jpg" alt="">
+          <img class="mcard-avatar" src="brand_assets/testimonio-nuria.jpg" alt="" width="96" height="96" loading="lazy">
           <div>
             <div class="mcard-name">Nuria P.</div>
             <div class="mcard-handle">D365 Finance Lead</div>
@@ -1728,7 +1829,7 @@
 
       <div class="mcard" aria-hidden="true">
         <div class="mcard-author">
-          <img class="mcard-avatar" src="brand_assets/testimonio-luis.jpg" alt="">
+          <img class="mcard-avatar" src="brand_assets/testimonio-luis.jpg" alt="" width="96" height="96" loading="lazy">
           <div>
             <div class="mcard-name">Luis A.</div>
             <div class="mcard-handle">Power Platform Dev</div>
@@ -1739,7 +1840,7 @@
 
       <div class="mcard" aria-hidden="true">
         <div class="mcard-author">
-          <img class="mcard-avatar" src="brand_assets/testimonio-elena.jpg" alt="">
+          <img class="mcard-avatar" src="brand_assets/testimonio-elena.jpg" alt="" width="96" height="96" loading="lazy">
           <div>
             <div class="mcard-name">Elena S.</div>
             <div class="mcard-handle">Implementation Manager</div>
@@ -1750,7 +1851,7 @@
 
       <div class="mcard" aria-hidden="true">
         <div class="mcard-author">
-          <img class="mcard-avatar" src="brand_assets/testimonio-pablo.jpg" alt="">
+          <img class="mcard-avatar" src="brand_assets/testimonio-pablo.jpg" alt="" width="96" height="96" loading="lazy">
           <div>
             <div class="mcard-name">Pablo M.</div>
             <div class="mcard-handle">Business Analyst</div>
@@ -1761,7 +1862,7 @@
 
       <div class="mcard" aria-hidden="true">
         <div class="mcard-author">
-          <img class="mcard-avatar" src="brand_assets/testimonio-juan.jpg" alt="">
+          <img class="mcard-avatar" src="brand_assets/testimonio-juan.jpg" alt="" width="96" height="96" loading="lazy">
           <div>
             <div class="mcard-name">Juan M.</div>
             <div class="mcard-handle">CRM Consultant</div>
@@ -2040,7 +2141,7 @@
           </a>
         </div>
         <div class="prog-sc-img">
-          <img src="brand_assets/online_class.jpg" alt="Introducción a Dynamics 365" loading="lazy">
+          <img src="brand_assets/online_class.jpg" alt="Introducción a Dynamics 365" width="800" height="571" loading="lazy">
         </div>
       </div>
 
@@ -2076,7 +2177,7 @@
           </a>
         </div>
         <div class="prog-sc-img">
-          <img src="brand_assets/cafe_lesson.jpg" alt="Contabilidad y Finanzas" loading="lazy">
+          <img src="brand_assets/cafe_lesson.jpg" alt="Contabilidad y Finanzas" width="800" height="600" loading="lazy">
         </div>
       </div>
 
@@ -2112,7 +2213,7 @@
           </a>
         </div>
         <div class="prog-sc-img">
-          <img src="brand_assets/mesa_clase.jpg" alt="Gestión de Productos" loading="lazy">
+          <img src="brand_assets/mesa_clase.jpg" alt="Gestión de Productos" width="768" height="512" loading="lazy">
         </div>
       </div>
 
@@ -2148,7 +2249,7 @@
           </a>
         </div>
         <div class="prog-sc-img">
-          <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop" alt="Compras y Abastecimiento" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop" alt="Compras y Abastecimiento" width="800" height="600" loading="lazy">
         </div>
       </div>
 
@@ -2184,7 +2285,7 @@
           </a>
         </div>
         <div class="prog-sc-img">
-          <img src="brand_assets/Microsoft.jpg" alt="Clientes y Cobros" loading="lazy">
+          <img src="brand_assets/Microsoft.jpg" alt="Clientes y Cobros" width="800" height="600" loading="lazy">
         </div>
       </div>
 
@@ -2628,7 +2729,7 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="brand_assets/logo_white_elevate.png" alt="Elevate Dynamics 365">
+        <img src="brand_assets/logo_white_elevate.png" alt="Elevate Dynamics 365" width="407" height="116" loading="lazy">
         <p>Formación profesional para el ecosistema Microsoft Dynamics 365 y Power Platform. Creado por profesionales, para la próxima generación de consultores.</p>
       </div>
       <div class="footer-col">
@@ -2665,7 +2766,7 @@
       <p>© 2026 Elevate Dynamics 365. Todos los derechos reservados.</p>
       <!-- TODO: Añadir URLs reales de redes sociales -->
       <div class="footer-socials">
-        <a href="#" class="soc-link" aria-label="LinkedIn">in</a>
+        <a href="https://www.linkedin.com/company/112424044" target="_blank" rel="noopener" class="soc-link" aria-label="LinkedIn">in</a>
         <a href="#" class="soc-link" aria-label="Twitter / X">𝕏</a>
         <a href="#" class="soc-link" aria-label="YouTube">▶</a>
       </div>
@@ -2673,92 +2774,101 @@
   </div>
 </footer>
 
-<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <script type="importmap">
   {"imports": {"three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js"}}
 </script>
 <script type="module">
-  /* Defer THREE.js init until after first paint */
-  await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
-  const THREE = await import('three');
+  /* Skip canvas entirely if user prefers reduced motion */
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.getElementById('hero-canvas').style.display = 'none';
+  } else {
+    /* Defer THREE.js init until after first paint */
+    await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+    const THREE = await import('three');
 
-  const canvas = document.getElementById('hero-canvas');
-  const hero   = canvas.closest('.hero');
+    const canvas = document.getElementById('hero-canvas');
+    const hero   = canvas.closest('.hero');
+    const isMobile = window.innerWidth < 768;
 
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: false });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: false });
+    renderer.setPixelRatio(isMobile ? 1 : Math.min(window.devicePixelRatio, 1.5));
 
-  const scene  = new THREE.Scene();
-  const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+    const scene  = new THREE.Scene();
+    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
 
-  const material = new THREE.ShaderMaterial({
-    uniforms: {
-      iTime:       { value: 0 },
-      iResolution: { value: new THREE.Vector2() }
-    },
-    vertexShader: `void main() { gl_Position = vec4(position, 1.0); }`,
-    fragmentShader: `
-      uniform float iTime;
-      uniform vec2  iResolution;
-      #define NUM_OCTAVES 3
-      float rand(vec2 n) { return fract(sin(dot(n, vec2(12.9898,4.1414))) * 43758.5453); }
-      float noise(vec2 p) {
-        vec2 ip=floor(p); vec2 u=fract(p);
-        u=u*u*(3.0-2.0*u);
-        float res=mix(mix(rand(ip),rand(ip+vec2(1,0)),u.x),mix(rand(ip+vec2(0,1)),rand(ip+vec2(1,1)),u.x),u.y);
-        return res*res;
-      }
-      float fbm(vec2 x) {
-        float v=0.0; float a=0.3;
-        vec2 shift=vec2(100);
-        mat2 rot=mat2(cos(0.5),sin(0.5),-sin(0.5),cos(0.5));
-        for(int i=0;i<NUM_OCTAVES;++i){ v+=a*noise(x); x=rot*x*2.0+shift; a*=0.4; }
-        return v;
-      }
-      void main() {
-        vec2 p=((gl_FragCoord.xy)-iResolution.xy*0.5)/iResolution.y*mat2(6.,-4.,4.,6.);
-        vec4 o=vec4(0.);
-        float f=2.+fbm(p+vec2(iTime*5.,0.))*.5;
-        for(float i=0.;i++<35.;){
-          vec2 v=p+cos(i*i+(iTime+p.x*.08)*.025+i*vec2(13.,11.))*3.5;
-          float tailNoise=fbm(v+vec2(iTime*.5,i))*.3*(1.-(i/35.));
-          vec4 auroraColors=vec4(.1+.3*sin(i*.2+iTime*.4),.3+.5*cos(i*.3+iTime*.5),.7+.3*sin(i*.4+iTime*.3),1.);
-          vec4 contrib=auroraColors*exp(sin(i*i+iTime*.8))/length(max(v,vec2(v.x*f*.015,v.y*1.5)));
-          float thin=smoothstep(0.,1.,i/35.)*.6;
-          o+=contrib*(1.+tailNoise*.8)*thin;
+    const PARTICLES = isMobile ? 8 : 35;
+    const OCTAVES = isMobile ? 2 : 3;
+
+    const material = new THREE.ShaderMaterial({
+      uniforms: {
+        iTime:       { value: 0 },
+        iResolution: { value: new THREE.Vector2() }
+      },
+      vertexShader: `void main() { gl_Position = vec4(position, 1.0); }`,
+      fragmentShader: `
+        uniform float iTime;
+        uniform vec2  iResolution;
+        #define NUM_OCTAVES ${OCTAVES}
+        #define NUM_PARTICLES ${PARTICLES}.
+        float rand(vec2 n) { return fract(sin(dot(n, vec2(12.9898,4.1414))) * 43758.5453); }
+        float noise(vec2 p) {
+          vec2 ip=floor(p); vec2 u=fract(p);
+          u=u*u*(3.0-2.0*u);
+          float res=mix(mix(rand(ip),rand(ip+vec2(1,0)),u.x),mix(rand(ip+vec2(0,1)),rand(ip+vec2(1,1)),u.x),u.y);
+          return res*res;
         }
-        o=tanh(pow(o/100.,vec4(1.6)));
-        gl_FragColor=o*1.5;
-      }
-    `
-  });
-
-  const mesh = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material);
-  scene.add(mesh);
-
-  const setSize = () => {
-    const w = hero.offsetWidth, h = hero.offsetHeight;
-    renderer.setSize(w, h, false);
-    material.uniforms.iResolution.value.set(w * renderer.getPixelRatio(), h * renderer.getPixelRatio());
-  };
-
-  new ResizeObserver(setSize).observe(hero);
-  setSize();
-
-  let raf, running = false;
-  const tick = () => {
-    raf = requestAnimationFrame(tick);
-    material.uniforms.iTime.value += 0.016;
-    renderer.render(scene, camera);
-  };
-
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting && !running) { running = true; tick(); }
-      else if (!e.isIntersecting && running) { running = false; cancelAnimationFrame(raf); }
+        float fbm(vec2 x) {
+          float v=0.0; float a=0.3;
+          vec2 shift=vec2(100);
+          mat2 rot=mat2(cos(0.5),sin(0.5),-sin(0.5),cos(0.5));
+          for(int i=0;i<NUM_OCTAVES;++i){ v+=a*noise(x); x=rot*x*2.0+shift; a*=0.4; }
+          return v;
+        }
+        void main() {
+          vec2 p=((gl_FragCoord.xy)-iResolution.xy*0.5)/iResolution.y*mat2(6.,-4.,4.,6.);
+          vec4 o=vec4(0.);
+          float f=2.+fbm(p+vec2(iTime*5.,0.))*.5;
+          for(float i=0.;i++<NUM_PARTICLES;){
+            vec2 v=p+cos(i*i+(iTime+p.x*.08)*.025+i*vec2(13.,11.))*3.5;
+            float tailNoise=fbm(v+vec2(iTime*.5,i))*.3*(1.-(i/NUM_PARTICLES));
+            vec4 auroraColors=vec4(.1+.3*sin(i*.2+iTime*.4),.3+.5*cos(i*.3+iTime*.5),.7+.3*sin(i*.4+iTime*.3),1.);
+            vec4 contrib=auroraColors*exp(sin(i*i+iTime*.8))/length(max(v,vec2(v.x*f*.015,v.y*1.5)));
+            float thin=smoothstep(0.,1.,i/NUM_PARTICLES)*.6;
+            o+=contrib*(1.+tailNoise*.8)*thin;
+          }
+          o=tanh(pow(o/100.,vec4(1.6)));
+          gl_FragColor=o*1.5;
+        }
+      `
     });
-  }, { threshold: 0 });
-  io.observe(hero);
+
+    const mesh = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material);
+    scene.add(mesh);
+
+    const setSize = () => {
+      const w = hero.offsetWidth, h = hero.offsetHeight;
+      renderer.setSize(w, h, false);
+      material.uniforms.iResolution.value.set(w * renderer.getPixelRatio(), h * renderer.getPixelRatio());
+    };
+
+    new ResizeObserver(setSize).observe(hero);
+    setSize();
+
+    let raf, running = false;
+    const tick = () => {
+      raf = requestAnimationFrame(tick);
+      material.uniforms.iTime.value += 0.016;
+      renderer.render(scene, camera);
+    };
+
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting && !running) { running = true; tick(); }
+        else if (!e.isIntersecting && running) { running = false; cancelAnimationFrame(raf); }
+      });
+    }, { threshold: 0 });
+    io.observe(hero);
+  }
 </script>
 
 <script defer>
@@ -3312,6 +3422,28 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
   </div>
 </div>
+
+<!-- ══════════ MOBILE ACCORDION for prog-sticky-cards ══════════ -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  if (window.innerWidth > 768) return;
+  var cards = document.querySelectorAll('.prog-sticky-card');
+  if (!cards.length) return;
+  // Open first card by default
+  cards[0].classList.add('psc-open');
+  cards.forEach(function(card) {
+    card.addEventListener('click', function(e) {
+      // Don't toggle if clicking a link or button
+      if (e.target.closest('a, button')) return;
+      var isOpen = card.classList.contains('psc-open');
+      // Close all
+      cards.forEach(function(c) { c.classList.remove('psc-open'); });
+      // Toggle clicked
+      if (!isOpen) card.classList.add('psc-open');
+    });
+  });
+});
+</script>
 
 <script src="lead-capture.js" defer></script>
 </body>
