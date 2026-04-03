@@ -1,0 +1,638 @@
+<!-- ═══════════════════════════════════════════════════════════════
+     POPUP MASTERCLASS — Captación de leads
+     Insertar este bloque antes de </body> en index.html
+     Activar con cualquier elemento con clase .trigger-masterclass-popup
+     ═══════════════════════════════════════════════════════════════ -->
+
+<style>
+/* ====== OVERLAY ====== */
+.mc-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .25s ease, visibility .25s ease;
+}
+.mc-overlay.mc-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ====== POPUP CONTAINER ====== */
+.mc-modal {
+  background: #fff;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 580px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 44px 40px 36px 40px;
+  position: relative;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  transform: scale(0.95);
+  transition: transform .25s cubic-bezier(.34, 1.56, .64, 1);
+}
+.mc-overlay.mc-active .mc-modal {
+  transform: scale(1);
+}
+
+/* ====== BOTÓN CERRAR ====== */
+.mc-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: #f5f5f5;
+  border-radius: 50%;
+  font-size: 20px;
+  color: #999;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+}
+.mc-close:hover {
+  background: #e8e8e8;
+  color: #333;
+}
+.mc-close:focus-visible {
+  outline: 2px solid #263FC9;
+  outline-offset: 2px;
+}
+.mc-close svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ====== HEADER ====== */
+.mc-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #0D0F1A;
+  margin: 0 0 8px 0;
+  padding-right: 40px;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.mc-subtitle {
+  font-size: 15px;
+  color: #6B7199;
+  margin: 0 0 36px 0;
+  line-height: 1.5;
+}
+
+/* ====== FORM ====== */
+.mc-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ====== FILAS (2 columnas) ====== */
+.mc-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+/* ====== CADA CAMPO (label + input) ====== */
+.mc-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mc-field label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #3A3F5C;
+}
+
+.mc-field label span,
+.mc-field label .mc-optional {
+  font-weight: 400;
+  color: #8890B5;
+  font-size: 12px;
+}
+
+/* ====== INPUTS Y SELECT ====== */
+.mc-field input,
+.mc-field select {
+  width: 100%;
+  height: 48px;
+  padding: 0 14px;
+  font-size: 15px;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  color: #0D0F1A;
+  background: #F4F5FB;
+  border: 1.5px solid #E8EAF6;
+  border-radius: 10px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.mc-field select {
+  padding-right: 36px;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238890B5' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-color: #F4F5FB;
+}
+
+.mc-field input:focus,
+.mc-field select:focus {
+  border-color: #263FC9;
+  box-shadow: 0 0 0 3px rgba(38, 63, 201, 0.12);
+}
+
+.mc-field input::placeholder {
+  color: #8890B5;
+}
+
+/* Input error */
+.mc-field input.mc-input-error,
+.mc-field select.mc-input-error {
+  border-color: #e53e3e;
+  box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.1);
+}
+
+.mc-error-msg {
+  font-size: 12px;
+  color: #e53e3e;
+  margin: 2px 0 0 0;
+  display: none;
+}
+.mc-error-msg.mc-visible {
+  display: block;
+}
+
+/* ====== CHECKBOX ====== */
+.mc-checkbox-wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 4px;
+  margin-bottom: 28px;
+}
+
+.mc-checkbox-wrap input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  margin-top: 2px;
+  accent-color: #263FC9;
+  cursor: pointer;
+}
+
+.mc-checkbox-label {
+  font-size: 13px;
+  color: #6B7199;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.mc-checkbox-label a {
+  color: #263FC9;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.mc-checkbox-label a:hover {
+  color: #1F3297;
+}
+
+.mc-terms-error {
+  margin-top: -18px;
+  margin-bottom: 16px;
+}
+
+/* ====== BOTÓN SUBMIT ====== */
+.mc-submit {
+  width: 100%;
+  height: 52px;
+  background: #263FC9;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.mc-submit:hover {
+  background: #1F3297;
+  box-shadow: 0 8px 28px rgba(38, 63, 201, 0.32);
+  transform: translateY(-1px);
+}
+.mc-submit:active {
+  transform: translateY(0);
+}
+.mc-submit:focus-visible {
+  outline: 2px solid #263FC9;
+  outline-offset: 3px;
+}
+.mc-submit:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.mc-spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: mc-spin 0.6s linear infinite;
+  display: none;
+}
+.mc-submit.mc-loading .mc-spinner { display: block; }
+.mc-submit.mc-loading .mc-submit-text { display: none; }
+.mc-submit.mc-loading .mc-submit-loading { display: inline; }
+.mc-submit-loading { display: none; }
+
+@keyframes mc-spin { to { transform: rotate(360deg); } }
+
+/* ====== TEXTO SEGURIDAD ====== */
+.mc-security {
+  text-align: center;
+  font-size: 12px;
+  color: #8890B5;
+  margin: 20px 0 0 0;
+}
+
+/* ====== SUCCESS ====== */
+.mc-success-view {
+  display: none;
+  text-align: center;
+  padding: 32px 0 8px;
+}
+.mc-success-view.mc-visible { display: block; }
+
+.mc-success-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(74, 222, 128, 0.1);
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mc-success-icon svg {
+  width: 32px;
+  height: 32px;
+  stroke: #4ade80;
+}
+
+.mc-success-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0D0F1A;
+  margin: 0 0 8px;
+}
+.mc-success-msg {
+  font-size: 15px;
+  color: #6B7199;
+  line-height: 1.6;
+  margin: 0 0 24px;
+}
+.mc-success-close {
+  display: inline-flex;
+  padding: 12px 32px;
+  border-radius: 10px;
+  border: 1.5px solid #E8EAF6;
+  background: #F4F5FB;
+  color: #0D0F1A;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+.mc-success-close:hover {
+  background: #e8eaf6;
+  border-color: #ccc;
+}
+.mc-success-close:focus-visible {
+  outline: 2px solid #263FC9;
+  outline-offset: 3px;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 600px) {
+  .mc-modal {
+    padding: 28px 20px 24px 20px;
+  }
+  .mc-title {
+    font-size: 21px;
+  }
+  .mc-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .mc-row .mc-field {
+    margin-bottom: 16px;
+  }
+  .mc-row .mc-field:last-child {
+    margin-bottom: 0;
+  }
+}
+</style>
+
+
+<!-- ── Modal ── -->
+<div class="mc-overlay" id="mc-overlay" role="dialog" aria-modal="true" aria-labelledby="mc-title">
+  <div class="mc-modal">
+    <button class="mc-close" id="mc-close" aria-label="Cerrar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+
+    <!-- Form view -->
+    <div id="mc-form-view">
+      <h2 class="mc-title" id="mc-title">Ap&uacute;ntate a nuestra pr&oacute;xima Master Class</h2>
+      <p class="mc-subtitle">Completa el formulario y te enviaremos los detalles de acceso. Plazas limitadas.</p>
+
+      <form class="mc-form" id="mc-form" novalidate>
+
+        <!-- Nombre + Email -->
+        <div class="mc-row">
+          <div class="mc-field">
+            <label for="mc-name">Nombre</label>
+            <input type="text" id="mc-name" name="name" placeholder="Tu nombre" required>
+            <p class="mc-error-msg" id="mc-name-error">Introduce tu nombre</p>
+          </div>
+          <div class="mc-field">
+            <label for="mc-email">Email</label>
+            <input type="email" id="mc-email" name="email" placeholder="tu@email.com" required>
+            <p class="mc-error-msg" id="mc-email-error">Introduce un email v&aacute;lido</p>
+          </div>
+        </div>
+
+        <!-- Pa&iacute;s + Tel&eacute;fono -->
+        <div class="mc-row">
+          <div class="mc-field">
+            <label for="mc-country">Pa&iacute;s</label>
+            <select id="mc-country" name="country" required>
+              <option value="" disabled selected>Selecciona tu pa&iacute;s</option>
+              <option value="ES">Espa&ntilde;a</option>
+              <option value="MX">M&eacute;xico</option>
+              <option value="CO">Colombia</option>
+              <option value="AR">Argentina</option>
+              <option value="CL">Chile</option>
+              <option value="PE">Per&uacute;</option>
+              <option value="EC">Ecuador</option>
+              <option value="UY">Uruguay</option>
+              <option value="PA">Panam&aacute;</option>
+              <option value="CR">Costa Rica</option>
+              <option value="DO">Rep&uacute;blica Dominicana</option>
+              <option value="OTHER">Otro</option>
+            </select>
+            <p class="mc-error-msg" id="mc-country-error">Selecciona tu pa&iacute;s</p>
+          </div>
+          <div class="mc-field">
+            <label for="mc-phone">Tel&eacute;fono <span class="mc-optional">(opcional)</span></label>
+            <input type="tel" id="mc-phone" name="phone" placeholder="+34 600 000 000">
+          </div>
+        </div>
+
+        <!-- T&eacute;rminos -->
+        <div class="mc-checkbox-wrap">
+          <input type="checkbox" id="mc-terms" name="terms" required>
+          <label class="mc-checkbox-label" for="mc-terms">
+            He le&iacute;do y acepto los <a href="/condiciones-legales.html" target="_blank">T&eacute;rminos y condiciones</a> y la <a href="/politica-de-cookies.html" target="_blank">Pol&iacute;tica de privacidad</a>
+          </label>
+        </div>
+        <p class="mc-error-msg mc-terms-error" id="mc-terms-error">Debes aceptar los t&eacute;rminos</p>
+
+        <button type="submit" class="mc-submit" id="mc-submit">
+          <span class="mc-submit-text">Apuntarme a la pr&oacute;xima MasterClass (100% Gratis)</span>
+          <span class="mc-submit-loading">Enviando...</span>
+          <span class="mc-spinner"></span>
+        </button>
+      </form>
+
+      <p class="mc-security">Tus datos est&aacute;n seguros. No compartimos tu informaci&oacute;n.</p>
+    </div>
+
+    <!-- Success view -->
+    <div class="mc-success-view" id="mc-success-view">
+      <div class="mc-success-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h3 class="mc-success-title">&iexcl;Listo! Te hemos reservado tu plaza.</h3>
+      <p class="mc-success-msg">Revisa tu email para los detalles de acceso.</p>
+      <button class="mc-success-close" id="mc-success-close">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+
+<script>
+(function() {
+  'use strict';
+
+  var overlay   = document.getElementById('mc-overlay');
+  var modal     = overlay.querySelector('.mc-modal');
+  var closeBtn  = document.getElementById('mc-close');
+  var form      = document.getElementById('mc-form');
+  var submitBtn = document.getElementById('mc-submit');
+  var formView  = document.getElementById('mc-form-view');
+  var successV  = document.getElementById('mc-success-view');
+  var successCloseBtn = document.getElementById('mc-success-close');
+
+  var focusableSelector = 'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+  var previousFocus = null;
+
+  // ── UTM capture ──
+  function getUtmParams() {
+    var params = new URLSearchParams(window.location.search);
+    var utm = {};
+    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'].forEach(function(key) {
+      var val = params.get(key);
+      if (val) utm[key] = val;
+    });
+    return Object.keys(utm).length ? utm : null;
+  }
+
+  // ── Open ──
+  function open() {
+    previousFocus = document.activeElement;
+    overlay.classList.add('mc-active');
+    document.body.style.overflow = 'hidden';
+    setTimeout(function() {
+      var first = modal.querySelector('input, select, button');
+      if (first) first.focus();
+    }, 100);
+  }
+
+  // ── Close ──
+  function close() {
+    overlay.classList.remove('mc-active');
+    document.body.style.overflow = '';
+    if (previousFocus) previousFocus.focus();
+    setTimeout(resetForm, 300);
+  }
+
+  function resetForm() {
+    form.reset();
+    formView.style.display = '';
+    successV.classList.remove('mc-visible');
+    submitBtn.classList.remove('mc-loading');
+    submitBtn.disabled = false;
+    clearErrors();
+  }
+
+  function clearErrors() {
+    var msgs = form.querySelectorAll('.mc-error-msg');
+    for (var i = 0; i < msgs.length; i++) msgs[i].classList.remove('mc-visible');
+    var inputs = form.querySelectorAll('.mc-input-error');
+    for (var j = 0; j < inputs.length; j++) inputs[j].classList.remove('mc-input-error');
+  }
+
+  // ── Triggers ──
+  document.addEventListener('click', function(e) {
+    if (e.target.closest('.trigger-masterclass-popup')) {
+      e.preventDefault();
+      open();
+    }
+  });
+
+  closeBtn.addEventListener('click', close);
+  successCloseBtn.addEventListener('click', close);
+
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) close();
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (!overlay.classList.contains('mc-active')) return;
+    if (e.key === 'Escape') { close(); return; }
+    if (e.key === 'Tab') {
+      var focusable = modal.querySelectorAll(focusableSelector);
+      if (!focusable.length) return;
+      var first = focusable[0];
+      var last  = focusable[focusable.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+      } else {
+        if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    }
+  });
+
+  // ── Blur validation (only after first submit attempt) ──
+  var hasAttempted = false;
+
+  function validateField(el, errorId, test) {
+    if (!hasAttempted) return true;
+    var ok = test(el);
+    if (!ok) { showError(el, errorId); } else { clearFieldError(el, errorId); }
+    return ok;
+  }
+
+  var nameEl    = document.getElementById('mc-name');
+  var emailEl   = document.getElementById('mc-email');
+  var countryEl = document.getElementById('mc-country');
+  var termsEl   = document.getElementById('mc-terms');
+
+  nameEl.addEventListener('blur', function() {
+    validateField(nameEl, 'mc-name-error', function(el) { return el.value.trim().length > 0; });
+  });
+  emailEl.addEventListener('blur', function() {
+    validateField(emailEl, 'mc-email-error', function(el) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value); });
+  });
+  countryEl.addEventListener('change', function() {
+    validateField(countryEl, 'mc-country-error', function(el) { return !!el.value; });
+  });
+  termsEl.addEventListener('change', function() {
+    if (!hasAttempted) return;
+    if (termsEl.checked) { document.getElementById('mc-terms-error').classList.remove('mc-visible'); }
+    else { document.getElementById('mc-terms-error').classList.add('mc-visible'); }
+  });
+
+  // ── Submit ──
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    hasAttempted = true;
+    clearErrors();
+
+    var valid = true;
+
+    if (!nameEl.value.trim()) { showError(nameEl, 'mc-name-error'); valid = false; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value)) { showError(emailEl, 'mc-email-error'); valid = false; }
+    if (!countryEl.value) { showError(countryEl, 'mc-country-error'); valid = false; }
+    if (!termsEl.checked) { document.getElementById('mc-terms-error').classList.add('mc-visible'); valid = false; }
+
+    if (!valid) return;
+
+    var data = {
+      name: nameEl.value.trim(),
+      email: emailEl.value.trim(),
+      country: countryEl.value,
+      phone: document.getElementById('mc-phone').value.trim() || null,
+      utm: getUtmParams(),
+      timestamp: new Date().toISOString()
+    };
+
+    submitBtn.classList.add('mc-loading');
+    submitBtn.disabled = true;
+
+    // TODO: fetch() al backend aquí
+    // fetch('/api/masterclass-signup', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify(data)
+    // })
+    // .then(function(res) { return res.json(); })
+    // .then(function() { showSuccess(); })
+    // .catch(function(err) {
+    //   console.error(err);
+    //   submitBtn.classList.remove('mc-loading');
+    //   submitBtn.disabled = false;
+    // });
+
+    console.log('[MasterClass Signup]', JSON.stringify(data, null, 2));
+
+    setTimeout(function() { showSuccess(); }, 1200);
+  });
+
+  function showError(input, errorId) {
+    input.classList.add('mc-input-error');
+    document.getElementById(errorId).classList.add('mc-visible');
+  }
+
+  function clearFieldError(input, errorId) {
+    input.classList.remove('mc-input-error');
+    document.getElementById(errorId).classList.remove('mc-visible');
+  }
+
+  function showSuccess() {
+    formView.style.display = 'none';
+    successV.classList.add('mc-visible');
+    var closeBtn2 = document.getElementById('mc-success-close');
+    if (closeBtn2) closeBtn2.focus();
+  }
+
+})();
+</script>

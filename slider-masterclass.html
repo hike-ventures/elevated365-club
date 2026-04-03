@@ -1,0 +1,523 @@
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDER MASTERCLASS — Captación de leads (exit intent / scroll / tiempo)
+     Insertar este bloque antes de </body> en index.html
+     Complementario al popup modal (popup-masterclass.html)
+     ═══════════════════════════════════════════════════════════════ -->
+
+<style>
+/* ====== OVERLAY ====== */
+.sl-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+}
+.sl-overlay.active {
+  pointer-events: auto;
+}
+.sl-overlay.active::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  animation: slFadeIn 0.3s ease forwards;
+}
+
+/* ====== PANEL ====== */
+.sl-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 400px;
+  height: 100vh;
+  background: #ffffff;
+  box-shadow: -12px 0 50px rgba(0, 0, 0, 0.15);
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow-y: auto;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  font-family: 'DM Sans', system-ui, sans-serif;
+}
+.sl-overlay.active .sl-panel {
+  transform: translateX(0);
+}
+
+/* ====== BOTÓN CERRAR ====== */
+.sl-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: #F4F5FB;
+  border-radius: 50%;
+  font-size: 22px;
+  color: #8890B5;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+  z-index: 1;
+  line-height: 1;
+}
+.sl-close:hover {
+  background: #E8EAF6;
+  color: #0D0F1A;
+}
+.sl-close:focus-visible {
+  outline: 2px solid #263FC9;
+  outline-offset: 2px;
+}
+
+/* ====== CONTENIDO ====== */
+.sl-content {
+  padding: 80px 32px 40px 32px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ====== BADGE ====== */
+.sl-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #263FC9;
+  margin-bottom: 20px;
+}
+
+/* ====== TÍTULO ====== */
+.sl-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #0D0F1A;
+  line-height: 1.3;
+  margin: 0 0 14px 0;
+}
+
+/* ====== SUBTÍTULO ====== */
+.sl-subtitle {
+  font-size: 15px;
+  color: #6B7199;
+  line-height: 1.6;
+  margin: 0 0 16px 0;
+}
+
+/* ====== SOCIAL PROOF ====== */
+.sl-proof {
+  font-size: 14px;
+  color: #263FC9;
+  font-weight: 500;
+  margin: 0 0 32px 0;
+  padding-bottom: 28px;
+  border-bottom: 1px solid #E8EAF6;
+  line-height: 1.5;
+}
+
+/* ====== FORMULARIO ====== */
+.sl-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ====== CAMPOS ====== */
+.sl-field {
+  margin-bottom: 18px;
+}
+.sl-field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #3A3F5C;
+  margin-bottom: 8px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.sl-field input {
+  width: 100%;
+  height: 48px;
+  padding: 0 14px;
+  font-size: 15px;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  color: #0D0F1A;
+  background: #F4F5FB;
+  border: 1.5px solid #E8EAF6;
+  border-radius: 10px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+}
+.sl-field input::placeholder {
+  color: #8890B5;
+}
+.sl-field input:focus {
+  border-color: #263FC9;
+  box-shadow: 0 0 0 3px rgba(38, 63, 201, 0.12);
+}
+.sl-field input.sl-input-error {
+  border-color: #e53e3e;
+  box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.1);
+}
+
+.sl-error-msg {
+  font-size: 12px;
+  color: #e53e3e;
+  margin: 6px 0 0 0;
+  display: none;
+}
+.sl-error-msg.sl-visible {
+  display: block;
+}
+
+/* ====== BOTÓN SUBMIT ====== */
+.sl-submit {
+  width: 100%;
+  height: 52px;
+  margin-top: 8px;
+  background: #263FC9;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.sl-submit:hover {
+  background: #1F3297;
+  box-shadow: 0 8px 28px rgba(38, 63, 201, 0.32);
+  transform: translateY(-1px);
+}
+.sl-submit:active {
+  transform: translateY(0);
+}
+.sl-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+.sl-submit:focus-visible {
+  outline: 2px solid #263FC9;
+  outline-offset: 3px;
+}
+
+.sl-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: sl-spin 0.6s linear infinite;
+  display: none;
+}
+.sl-submit.sl-loading .sl-spinner { display: block; }
+.sl-submit.sl-loading .sl-submit-text { display: none; }
+.sl-submit.sl-loading .sl-submit-loading { display: inline; }
+.sl-submit-loading { display: none; }
+
+@keyframes sl-spin { to { transform: rotate(360deg); } }
+
+/* ====== LEGAL ====== */
+.sl-legal {
+  margin-top: 20px;
+}
+.sl-checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+}
+.sl-checkbox-label input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  margin-top: 1px;
+  accent-color: #263FC9;
+  cursor: pointer;
+}
+.sl-checkbox-label span {
+  font-size: 12px;
+  color: #8890B5;
+  line-height: 1.5;
+}
+.sl-checkbox-label a {
+  color: #263FC9;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.sl-checkbox-label a:hover {
+  color: #1F3297;
+}
+.sl-spam-note {
+  font-size: 11px;
+  color: #8890B5;
+  margin: 12px 0 0 0;
+  text-align: center;
+}
+
+/* ====== ÉXITO ====== */
+.sl-success {
+  display: none;
+  text-align: center;
+  padding: 40px 0;
+}
+.sl-success.sl-visible {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  animation: slSuccessFade 0.4s ease;
+}
+.sl-success-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(74, 222, 128, 0.1);
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+}
+.sl-success-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0D0F1A;
+  margin: 0 0 8px 0;
+}
+.sl-success-text {
+  font-size: 14px;
+  color: #6B7199;
+  margin: 0;
+}
+
+/* ====== ANIMACIONES ====== */
+@keyframes slFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slSuccessFade {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ====== RESPONSIVE MÓVIL ====== */
+@media (max-width: 600px) {
+  .sl-panel {
+    width: 100%;
+    height: auto;
+    max-height: 85vh;
+    top: auto;
+    bottom: 0;
+    right: 0;
+    border-radius: 20px 20px 0 0;
+    transform: translateY(100%);
+    box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.15);
+  }
+  .sl-overlay.active .sl-panel {
+    transform: translateY(0);
+  }
+  .sl-content {
+    padding: 60px 24px 32px 24px;
+  }
+  .sl-title {
+    font-size: 22px;
+  }
+}
+</style>
+
+
+<!-- ── Slider ── -->
+<div class="sl-overlay" id="sl-overlay" aria-hidden="true">
+  <div class="sl-panel" id="sl-panel" role="complementary" aria-label="Reserva tu plaza en la MasterClass">
+    <button class="sl-close" id="sl-close" aria-label="Cerrar">&times;</button>
+
+    <div class="sl-content">
+      <!-- Form view -->
+      <div id="sl-form-view">
+        <span class="sl-badge">MASTERCLASS GRATUITA</span>
+        <h2 class="sl-title">&iquest;Te vas sin reservar tu plaza?</h2>
+        <p class="sl-subtitle">Aprende los fundamentos de Dynamics 365 en una sesi&oacute;n en vivo de 60 minutos. Sin coste alguno.</p>
+        <p class="sl-proof">&Uacute;nete a nuestra sesi&oacute;n con uno de nuestros profesores y descubre Elevate</p>
+
+        <form class="sl-form" id="sl-form" novalidate>
+          <div class="sl-field">
+            <label for="sl-name">Nombre</label>
+            <input type="text" id="sl-name" name="name" placeholder="Tu nombre" required>
+            <p class="sl-error-msg" id="sl-name-error">Introduce tu nombre</p>
+          </div>
+          <div class="sl-field">
+            <label for="sl-email">Email</label>
+            <input type="email" id="sl-email" name="email" placeholder="tu@email.com" required>
+            <p class="sl-error-msg" id="sl-email-error">Introduce un email v&aacute;lido</p>
+          </div>
+
+          <button type="submit" class="sl-submit" id="sl-submit">
+            <span class="sl-submit-text">Reservar mi plaza gratis &rarr;</span>
+            <span class="sl-submit-loading">Enviando...</span>
+            <span class="sl-spinner"></span>
+          </button>
+
+          <div class="sl-legal">
+            <label class="sl-checkbox-label">
+              <input type="checkbox" id="sl-terms-check" checked>
+              <span>Acepto los <a href="/condiciones-legales.html" target="_blank">t&eacute;rminos</a> y la <a href="/politica-de-cookies.html" target="_blank">pol&iacute;tica de privacidad</a></span>
+            </label>
+            <p class="sl-spam-note">Sin spam. Puedes darte de baja en cualquier momento.</p>
+          </div>
+        </form>
+      </div>
+
+      <!-- Success view -->
+      <div class="sl-success" id="sl-success">
+        <div class="sl-success-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h3 class="sl-success-title">&iexcl;Plaza reservada!</h3>
+        <p class="sl-success-text">Revisa tu email para los detalles de acceso.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+(function() {
+  'use strict';
+
+  var overlay   = document.getElementById('sl-overlay');
+  var panel     = document.getElementById('sl-panel');
+  var closeBtn  = document.getElementById('sl-close');
+  var form      = document.getElementById('sl-form');
+  var submitBtn = document.getElementById('sl-submit');
+  var formView  = document.getElementById('sl-form-view');
+  var successV  = document.getElementById('sl-success');
+  var nameEl    = document.getElementById('sl-name');
+  var emailEl   = document.getElementById('sl-email');
+  var termsEl   = document.getElementById('sl-terms-check');
+
+  var isOpen = false;
+  var triggered = false;
+  var isMobile = window.innerWidth <= 600;
+
+  function getUtmParams() {
+    var params = new URLSearchParams(window.location.search);
+    var utm = {};
+    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'].forEach(function(key) {
+      var val = params.get(key);
+      if (val) utm[key] = val;
+    });
+    return Object.keys(utm).length ? utm : null;
+  }
+
+  function shouldBlock() {
+    var popupOverlay = document.querySelector('.mc-overlay.mc-active');
+    if (popupOverlay) return true;
+    if (sessionStorage.getItem('mc_lead_captured')) return true;
+    if (sessionStorage.getItem('mc_slider_dismissed')) return true;
+    return false;
+  }
+
+  function open() {
+    if (isOpen || triggered || shouldBlock()) return;
+    triggered = true;
+    isOpen = true;
+    overlay.classList.add('active');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close() {
+    isOpen = false;
+    overlay.classList.remove('active');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    sessionStorage.setItem('mc_slider_dismissed', 'true');
+  }
+
+  closeBtn.addEventListener('click', close);
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) close();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && isOpen) close();
+  });
+
+  // TRIGGER 1: Exit intent (desktop only)
+  if (!isMobile) {
+    document.addEventListener('mouseout', function(e) {
+      if (e.clientY <= 0 && e.relatedTarget === null) open();
+    });
+  }
+
+  // TRIGGER 2: Time on page
+  setTimeout(function() { open(); }, isMobile ? 60000 : 45000);
+
+  // TRIGGER 3: Deep scroll
+  var scrollThreshold = isMobile ? 0.8 : 0.7;
+  var scrollTriggered = false;
+  window.addEventListener('scroll', function() {
+    if (scrollTriggered) return;
+    var pct = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
+    if (pct >= scrollThreshold) { scrollTriggered = true; open(); }
+  }, { passive: true });
+
+  // FORM
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var msgs = form.querySelectorAll('.sl-error-msg');
+    for (var i = 0; i < msgs.length; i++) msgs[i].classList.remove('sl-visible');
+    var inputs = form.querySelectorAll('.sl-input-error');
+    for (var j = 0; j < inputs.length; j++) inputs[j].classList.remove('sl-input-error');
+
+    var valid = true;
+    if (!nameEl.value.trim()) {
+      nameEl.classList.add('sl-input-error');
+      document.getElementById('sl-name-error').classList.add('sl-visible');
+      valid = false;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value)) {
+      emailEl.classList.add('sl-input-error');
+      document.getElementById('sl-email-error').classList.add('sl-visible');
+      valid = false;
+    }
+    if (!valid) return;
+
+    var data = {
+      name: nameEl.value.trim(),
+      email: emailEl.value.trim(),
+      terms_accepted: termsEl.checked,
+      source: 'slider-exit-intent',
+      utm: getUtmParams(),
+      timestamp: new Date().toISOString()
+    };
+
+    submitBtn.classList.add('sl-loading');
+    submitBtn.disabled = true;
+
+    // TODO: fetch() al backend aquí
+    console.log('[Slider Signup]', JSON.stringify(data, null, 2));
+    setTimeout(function() { showSuccess(); }, 1000);
+  });
+
+  function showSuccess() {
+    formView.style.display = 'none';
+    successV.classList.add('sl-visible');
+    sessionStorage.setItem('mc_lead_captured', 'true');
+    setTimeout(function() { close(); }, 3000);
+  }
+})();
+</script>

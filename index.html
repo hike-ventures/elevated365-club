@@ -21,6 +21,8 @@
   <meta name="twitter:title" content="Curso de Microsoft Dynamics 365 Finance & Supply Chain | Elevate D365">
   <meta name="twitter:description" content="Curso de Microsoft Dynamics 365 con consultores certificados. Empieza gratis.">
   <meta name="twitter:image" content="https://elevated365.club/og-image.jpg">
+  <link rel="stylesheet" href="lead-capture.css">
+  <noscript><style>.fade-up{opacity:1!important;transform:none!important;}.faq-answer{opacity:1!important;max-height:none!important;}</style></noscript>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -279,6 +281,38 @@
     .hero-actions {
       display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap;
     }
+    .hero-cta-masterclass {
+      position: relative; display: inline-flex; align-items: center; justify-content: center;
+      gap: 8px; padding: 16px 36px; font-size: 17px; font-weight: 600;
+      font-family: var(--font-brand); color: #1a1a2e; background: #ffffff;
+      border: none; border-radius: 12px; cursor: pointer; overflow: visible;
+      text-decoration: none; transition: all .35s ease; z-index: 1;
+    }
+    .hero-cta-masterclass:hover { color: #ffffff; background: linear-gradient(135deg, #7c6bff, #6a5ae0); }
+    .hero-cta-masterclass:active { transform: scale(0.97); }
+    .hero-cta-masterclass::after {
+      content: ''; position: absolute; inset: -3px;
+      background: linear-gradient(135deg, #7c6bff, #a855f7, #00ff88);
+      background-size: 300% 300%; border-radius: 15px;
+      opacity: 0.35; filter: blur(14px);
+      transition: opacity .4s ease, filter .4s ease;
+      z-index: -1; animation: gradientShift 6s ease infinite;
+    }
+    .hero-cta-masterclass:hover::after { opacity: 0.7; filter: blur(18px); }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .hero-cta-masterclass .cta-arrow {
+      width: 16px; height: 16px; stroke: currentColor; transition: transform .3s ease;
+    }
+    .hero-cta-masterclass:hover .cta-arrow { transform: translate(2px, -2px); }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-cta-masterclass::after { animation: none; }
+    }
+    .hero-studies-link:hover { color: rgba(255,255,255,.8) !important; text-decoration: underline; }
+
     .scroll-hint {
       position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
       z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 8px;
@@ -1218,6 +1252,11 @@
     .fade-up:nth-child(3) { transition-delay: 160ms; }
     .fade-up:nth-child(4) { transition-delay: 240ms; }
 
+    /* Fallback: if JS fails, show fade-up elements */
+    @media (scripting: none) {
+      .fade-up { opacity: 1; transform: none; }
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
       .why-layout { grid-template-columns: 1fr; gap: 48px; }
@@ -1249,7 +1288,7 @@
   </div>
   <div class="container" style="max-width:100%; padding:0 24px 0 0;">
     <div class="nav-inner">
-      <a href="#" class="nav-logo" aria-label="Elevate Dynamics 365 home">
+      <a href="/" class="nav-logo" aria-label="Elevate Dynamics 365 home">
         <img class="nav-logo-light" src="brand_assets/logo_white_elevate.png" alt="Elevate Dynamics 365">
         <img class="nav-logo-dark"  src="brand_assets/logo_black-elevate.png"  alt="Elevate Dynamics 365">
       </a>
@@ -1262,7 +1301,7 @@
         </ul>
         <div class="btn-cta-wrap">
           <div class="btn-cta-glow" style="filter:blur(10px);"></div>
-          <a href="https://elevated365.club/m1-introduccion-d36-free" class="btn-cta" style="padding:10px 22px; font-size:.8rem;">Prueba Gratis</a>
+          <a href="#" class="btn-cta trigger-masterclass-popup" style="padding:10px 22px; font-size:.8rem;">Prueba Gratis</a>
         </div>
       </div>
     </div>
@@ -1288,21 +1327,17 @@
     <h1>Conviértete en consultor de <em>Dynamics 365</em> en 5 semanas</h1>
 
     <p class="hero-sub">
-      Formación 100% práctica en D365 Finance &amp; Supply Chain, impartida por consultores que implementan Dynamics cada día. Aprende con casos reales, certifícate con la única escuela dedicada 100% a enseñar Microsoft Dynamics 365.
+      Formaci&oacute;n 100% pr&aacute;ctica en Dynamics 365, impartida por consultores que implementan D365 cada d&iacute;a. Somos la &uacute;nica escuela que se dedica &uacute;nica y exclusivamente a ense&ntilde;ar <strong style="white-space:nowrap;">Microsoft Dynamics 365</strong>.
     </p>
 
-    <div class="hero-actions">
-      <div class="btn-cta-wrap">
-        <div class="btn-cta-glow"></div>
-        <a href="#pricing" class="btn-cta">
-          Empieza gratis
-          <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="white" stroke-width="2" aria-hidden="true">
-            <path d="M0 5h7" class="cta-line"/>
-            <path d="M1 1l4 4-4 4" class="cta-head"/>
-          </svg>
-        </a>
-      </div>
-      <a href="#programs" class="btn btn-outline-white">Ver plan de estudios</a>
+    <div style="display:flex; flex-direction:column; align-items:center; gap:16px;">
+      <a href="#" class="hero-cta-masterclass trigger-masterclass-popup">
+        Me apunto a la pr&oacute;xima Master Class Gratuita
+        <svg class="cta-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+      </a>
+      <a href="#programs" class="hero-studies-link" style="color:rgba(255,255,255,.5); font-family:var(--font-brand); font-size:.875rem; text-decoration:none; transition:color .2s ease;">
+        Ver plan de estudios &darr;
+      </a>
     </div>
   </div>
 
@@ -1354,7 +1389,7 @@
             <span class="stat-value">Online</span>
             <span class="stat-delta pos"></span>
           </div>
-          <div class="stat-label">Pensado para que vayas a tu ritmo</div>
+          <div class="stat-label">Nos adaptamos a tu d&iacute;a a d&iacute;a, t&uacute; eliges tu ritmo</div>
         </div>
       </div>
 
@@ -1999,7 +2034,7 @@
             <span class="prog-sc-chip">En directo vía Teams</span>
           </div>
           <p style="font-family:var(--font-body); font-size:.82rem; font-style:italic; color:var(--gray-400); line-height:1.6; margin-bottom:24px;">Incluye acceso a las grabaciones y ejercicios introductorios para fijar conceptos.</p>
-          <a href="https://elevated365.club/m1-introduccion-d36-free" class="prog-sc-cta">
+          <a href="#" class="prog-sc-cta trigger-masterclass-popup">
             Empieza por este curso →
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -2197,8 +2232,8 @@
 
     <!-- Free banner -->
     <div class="pricing-free-banner fade-up">
-      <p>¿No estás seguro? Empieza con nuestro curso introductorio gratuito — 5 lecciones, 3-4 horas.</p>
-      <a href="https://elevated365.club/m1-introduccion-d36-free" class="btn btn-ghost" style="flex-shrink:0; padding:10px 20px; font-size:.82rem;">Probar gratis →</a>
+      <p>¿No estás seguro? Lo mejor es que te apuntes al siguiente Webinar gratuito.</p>
+      <a href="#" class="btn btn-ghost trigger-masterclass-popup" style="flex-shrink:0; padding:10px 20px; font-size:.82rem;">Probar gratis →</a>
     </div>
 
     <div class="pricing-grid">
@@ -2638,11 +2673,14 @@
   </div>
 </footer>
 
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <script type="importmap">
   {"imports": {"three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js"}}
 </script>
 <script type="module">
-  import * as THREE from 'three';
+  /* Defer THREE.js init until after first paint */
+  await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+  const THREE = await import('three');
 
   const canvas = document.getElementById('hero-canvas');
   const hero   = canvas.closest('.hero');
@@ -2723,7 +2761,8 @@
   io.observe(hero);
 </script>
 
-<script>
+<script defer>
+document.addEventListener('DOMContentLoaded', function() {
   // Nav scroll state
   const nav = document.getElementById('nav');
   const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 60);
@@ -2919,9 +2958,11 @@
     });
   }, { threshold: 0.1 });
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+});
 </script>
 
-<script>
+<script defer>
+document.addEventListener('DOMContentLoaded', function() {
   // FAQ accordion & category tabs
   document.querySelectorAll('.faq-cat-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -2959,6 +3000,7 @@
       }
     });
   });
+});
 </script>
 <!-- ══════════ WHATSAPP FLOATING ══════════ -->
 <a href="https://wa.me/34696833667" target="_blank" rel="noopener" class="wa-float" aria-label="Contáctanos por WhatsApp">
@@ -2971,7 +3013,8 @@
 </a>
 
 <!-- ══════════ GLOWING CARDS JS ══════════ -->
-<script>
+<script defer>
+document.addEventListener('DOMContentLoaded', function() {
 (function() {
   const section = document.getElementById('para-quien');
   if (!section) return;
@@ -3029,6 +3072,7 @@
   }, { threshold: 0 });
   io.observe(section);
 })();
+});
 </script>
 
 <!-- ══════════ STRUCTURED DATA ══════════ -->
@@ -3147,5 +3191,128 @@
 ]
 </script>
 
+<!-- ══════════ LEAD CAPTURE: POPUP MODAL ══════════ -->
+<div class="mc-overlay" id="mc-overlay" role="dialog" aria-modal="true" aria-labelledby="mc-title">
+  <div class="mc-modal">
+    <button class="mc-close" id="mc-close" aria-label="Cerrar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div id="mc-form-view">
+      <h2 class="mc-title" id="mc-title">Ap&uacute;ntate a nuestra pr&oacute;xima Master Class</h2>
+      <p class="mc-subtitle">Hemos preparado una Master Class con uno de nuestros profesores para que nos veas en acci&oacute;n. Ap&uacute;ntate, es 100% gratuito.</p>
+      <form class="mc-form" id="mc-form" novalidate>
+        <div class="mc-row">
+          <div class="mc-field">
+            <label for="mc-name">Nombre</label>
+            <input type="text" id="mc-name" name="name" placeholder="Tu nombre" required>
+            <p class="mc-error-msg" id="mc-name-error">Introduce tu nombre</p>
+          </div>
+          <div class="mc-field">
+            <label for="mc-email">Email</label>
+            <input type="email" id="mc-email" name="email" placeholder="tu@email.com" required>
+            <p class="mc-error-msg" id="mc-email-error">Introduce un email v&aacute;lido</p>
+          </div>
+        </div>
+        <div class="mc-row">
+          <div class="mc-field">
+            <label for="mc-country">Pa&iacute;s</label>
+            <select id="mc-country" name="country" required>
+              <option value="" disabled selected>Selecciona tu pa&iacute;s</option>
+              <option value="ES">Espa&ntilde;a</option>
+              <option value="MX">M&eacute;xico</option>
+              <option value="CO">Colombia</option>
+              <option value="AR">Argentina</option>
+              <option value="CL">Chile</option>
+              <option value="PE">Per&uacute;</option>
+              <option value="EC">Ecuador</option>
+              <option value="UY">Uruguay</option>
+              <option value="PA">Panam&aacute;</option>
+              <option value="CR">Costa Rica</option>
+              <option value="DO">Rep&uacute;blica Dominicana</option>
+              <option value="OTHER">Otro</option>
+            </select>
+            <p class="mc-error-msg" id="mc-country-error">Selecciona tu pa&iacute;s</p>
+          </div>
+          <div class="mc-field">
+            <label for="mc-phone">Tel&eacute;fono <span class="mc-optional">(opcional)</span></label>
+            <div class="mc-phone-wrapper">
+              <span class="mc-phone-prefix" id="mc-phone-prefix">+34</span>
+              <input type="tel" id="mc-phone" name="phone" placeholder="600 000 000" inputmode="numeric">
+            </div>
+          </div>
+        </div>
+        <div class="mc-checkbox-wrap">
+          <input type="checkbox" id="mc-terms" name="terms" required>
+          <label class="mc-checkbox-label" for="mc-terms">
+            He le&iacute;do y acepto los <a href="/condiciones-legales.html" target="_blank">T&eacute;rminos y condiciones</a> y la <a href="/politica-de-cookies.html" target="_blank">Pol&iacute;tica de privacidad</a>
+          </label>
+        </div>
+        <p class="mc-error-msg mc-terms-error" id="mc-terms-error">Debes aceptar los t&eacute;rminos</p>
+        <button type="submit" class="mc-submit" id="mc-submit">
+          <span class="mc-submit-text">Apuntarme a la pr&oacute;xima MasterClass (100% Gratis)</span>
+          <span class="mc-submit-loading">Enviando...</span>
+          <span class="mc-spinner"></span>
+        </button>
+      </form>
+      <p class="mc-security">Tus datos est&aacute;n seguros. No compartimos tu informaci&oacute;n.</p>
+    </div>
+    <div class="mc-success-view" id="mc-success-view">
+      <div class="mc-success-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h3 class="mc-success-title">&iexcl;Listo! Te hemos reservado tu plaza.</h3>
+      <p class="mc-success-msg">Revisa tu email para los detalles de acceso.</p>
+      <button class="mc-success-close" id="mc-success-close">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ LEAD CAPTURE: SLIDER LATERAL ══════════ -->
+<div class="sl-overlay" id="sl-overlay" aria-hidden="true">
+  <div class="sl-panel" id="sl-panel" role="complementary" aria-label="Reserva tu plaza en la MasterClass">
+    <button class="sl-close" id="sl-close" aria-label="Cerrar">&times;</button>
+    <div class="sl-content">
+      <div id="sl-form-view">
+        <span class="sl-badge">MASTERCLASS GRATUITA</span>
+        <h2 class="sl-title">&iquest;Te vas sin reservar tu plaza?</h2>
+        <p class="sl-subtitle">Aprende los fundamentos de Dynamics 365 en una sesi&oacute;n en vivo de 60 minutos. Sin coste alguno.</p>
+        <p class="sl-proof">&Uacute;nete a nuestra sesi&oacute;n con uno de nuestros profesores y descubre Elevate</p>
+        <form class="sl-form" id="sl-form" novalidate>
+          <div class="sl-field">
+            <label for="sl-name">Nombre</label>
+            <input type="text" id="sl-name" name="name" placeholder="Tu nombre" required>
+            <p class="sl-error-msg" id="sl-name-error">Introduce tu nombre</p>
+          </div>
+          <div class="sl-field">
+            <label for="sl-email">Email</label>
+            <input type="email" id="sl-email" name="email" placeholder="tu@email.com" required>
+            <p class="sl-error-msg" id="sl-email-error">Introduce un email v&aacute;lido</p>
+          </div>
+          <button type="submit" class="sl-submit" id="sl-submit">
+            <span class="sl-submit-text">Reservar mi plaza gratis &rarr;</span>
+            <span class="sl-submit-loading">Enviando...</span>
+            <span class="sl-spinner"></span>
+          </button>
+          <div class="sl-legal">
+            <label class="sl-checkbox-label">
+              <input type="checkbox" id="sl-terms-check" checked>
+              <span>Acepto los <a href="/condiciones-legales.html" target="_blank">t&eacute;rminos</a> y la <a href="/politica-de-cookies.html" target="_blank">pol&iacute;tica de privacidad</a></span>
+            </label>
+            <p class="sl-spam-note">Sin spam. Puedes darte de baja en cualquier momento.</p>
+          </div>
+        </form>
+      </div>
+      <div class="sl-success" id="sl-success">
+        <div class="sl-success-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h3 class="sl-success-title">&iexcl;Plaza reservada!</h3>
+        <p class="sl-success-text">Revisa tu email para los detalles de acceso.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="lead-capture.js" defer></script>
 </body>
 </html>
