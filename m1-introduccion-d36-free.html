@@ -3850,70 +3850,6 @@
     })();
 
 
-    // === Exit Intent — Email Capture (Desktop only) ===
-    (function() {
-      if (PAYWALL_CONFIG.isUnlocked) return;
-      if (window.innerWidth < 768) return;
-
-      let exitShown = false;
-      const minTime = 30000; // 30 seconds minimum
-
-      document.documentElement.addEventListener('mouseleave', function(e) {
-        if (e.clientY > 0) return;
-        if (exitShown) return;
-        if (sessionStorage.getItem('exitIntentShown')) return;
-        if (Date.now() - pageLoadTime < minTime) return;
-        if (paywallEl && paywallEl.style.display !== 'none') return; // Don't show if paywall is open
-
-        exitShown = true;
-        sessionStorage.setItem('exitIntentShown', 'true');
-        showExitIntent();
-      });
-
-      window.showExitIntent = function() {
-        const html = `
-          <div id="exit-intent-modal" style="position:fixed;inset:0;z-index:110;display:flex;align-items:center;justify-content:center;background:rgba(13,15,26,0.50);backdrop-filter:blur(2px);opacity:0;transition:opacity 0.3s ease;" onclick="if(event.target===this)hideExitIntent()">
-            <div style="background:#FFFFFF;border-radius:20px;max-width:480px;width:90vw;padding:40px;box-shadow:0 24px 48px rgba(13,15,26,0.2);transform:scale(0.95);opacity:0;transition:transform 0.3s ease,opacity 0.3s ease;">
-              <h2 style="color:#182465;font-family:'Styrene A',system-ui,sans-serif;font-weight:700;font-size:24px;line-height:1.2;">¿Te está gustando? Déjanos hacerte un regalo.</h2>
-              <p style="color:#3A3F5C;font-family:'Tiempos Text',Georgia,serif;font-size:15px;margin-top:12px;line-height:1.6;">Suscríbete a nuestra newsletter y empieza a recibir casos y ejemplos de cómo nuestros profesores trabajan con Dynamics 365.</p>
-              <form id="exit-intent-form" style="margin-top:20px;" onsubmit="handleExitSubmit(event)">
-                <input type="email" id="exit-email" placeholder="tu@email.com" required style="width:100%;border:1px solid #E8EAF6;border-radius:10px;padding:12px 16px;font-family:'Tiempos Text',Georgia,serif;font-size:15px;box-sizing:border-box;outline:none;transition:border-color 0.2s,box-shadow 0.2s;" onfocus="this.style.borderColor='#263FC9';this.style.boxShadow='0 0 0 3px rgba(38,63,201,0.1)'" onblur="this.style.borderColor='#E8EAF6';this.style.boxShadow='none'" />
-                <button type="submit" style="margin-top:12px;width:100%;background:#263FC9;color:#fff;font-family:'Styrene A',system-ui,sans-serif;font-size:14px;font-weight:700;border:none;border-radius:10px;padding:12px;cursor:pointer;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">Suscribirme gratis</button>
-              </form>
-              <div id="exit-intent-success" style="display:none;text-align:center;padding:20px 0;">
-                <svg width="48" height="48" fill="none" stroke="#263FC9" stroke-width="2" viewBox="0 0 24 24" style="margin:0 auto;"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
-                <p style="color:#263FC9;font-family:'Styrene A',system-ui,sans-serif;font-size:16px;font-weight:600;margin-top:12px;">¡Revisa tu bandeja!</p>
-              </div>
-              <p onclick="hideExitIntent()" style="margin-top:16px;text-align:center;color:#8890B5;font-size:13px;cursor:pointer;font-family:'Tiempos Text',Georgia,serif;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">No gracias, por ahora no</p>
-            </div>
-          </div>`;
-        document.body.insertAdjacentHTML('beforeend', html);
-        const modal = document.getElementById('exit-intent-modal');
-        document.body.classList.add('modal-open');
-        requestAnimationFrame(() => {
-          modal.style.opacity = '1';
-          modal.querySelector('div > div').style.transform = 'scale(1)';
-          modal.querySelector('div > div').style.opacity = '1';
-        });
-        document.addEventListener('keydown', function exitEsc(e) {
-          if (e.key === 'Escape') { hideExitIntent(); document.removeEventListener('keydown', exitEsc); }
-        });
-      };
-
-      window.hideExitIntent = function() {
-        const modal = document.getElementById('exit-intent-modal');
-        if (!modal) return;
-        modal.style.opacity = '0';
-        setTimeout(() => { modal.remove(); document.body.classList.remove('modal-open'); }, 200);
-      };
-
-      window.handleExitSubmit = function(e) {
-        e.preventDefault();
-        const email = document.getElementById('exit-email').value;
-        document.getElementById('exit-intent-form').style.display = 'none';
-        document.getElementById('exit-intent-success').style.display = 'block';
-      };
-    })();
 
     // === WhatsApp Button ===
     (function() {
@@ -4016,6 +3952,167 @@
     ]
   }
 }
+</script>
+<!-- ══════════ WELCOME POPUP — Post-registro ══════════ -->
+<style>
+.wp-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .25s ease, visibility .25s ease;
+}
+.wp-overlay.wp-active {
+  opacity: 1;
+  visibility: visible;
+}
+.wp-popup {
+  position: relative;
+  background: #ffffff;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 36px 32px 32px;
+  box-shadow: 0 16px 48px rgba(38, 63, 201, 0.1), 0 4px 16px rgba(0, 0, 0, 0.08);
+  font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .2s ease-out, transform .2s ease-out;
+}
+.wp-overlay.wp-active .wp-popup {
+  opacity: 1;
+  transform: translateY(0);
+}
+.wp-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  color: #8890B5;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s, background 0.15s;
+}
+.wp-close:hover { color: #0D0F1A; background: #F4F5FB; }
+.wp-close:focus-visible { outline: 2px solid #263FC9; outline-offset: 2px; }
+.wp-close svg { width: 16px; height: 16px; }
+.wp-icon {
+  width: 48px; height: 48px; margin: 0 auto 20px;
+  border-radius: 50%; background: #263FC9;
+  display: flex; align-items: center; justify-content: center;
+}
+.wp-icon svg { width: 24px; height: 24px; stroke: #fff; fill: none; }
+.wp-title {
+  font-size: 22px; font-weight: 700; color: #0D0F1A;
+  text-align: center; margin: 0 0 16px; line-height: 1.3;
+}
+.wp-text {
+  font-size: 15px; color: #6B7199; text-align: center;
+  line-height: 1.7; margin: 0 0 28px;
+}
+.wp-cta {
+  display: flex; align-items: center; justify-content: center;
+  width: 100%; height: 48px; background: #263FC9; color: #fff;
+  font-size: 15px; font-weight: 600;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  border: none; border-radius: 10px; cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.wp-cta:hover { background: #1F3297; box-shadow: 0 8px 28px rgba(38, 63, 201, 0.32); transform: translateY(-1px); }
+.wp-cta:active { transform: translateY(0); }
+.wp-cta:focus-visible { outline: 2px solid #263FC9; outline-offset: 3px; }
+.wp-note {
+  font-size: 12px; color: #8890B5; text-align: center;
+  margin: 14px 0 0; line-height: 1.5;
+}
+@media (max-width: 600px) {
+  .wp-popup { width: 92%; padding: 28px 24px; }
+  .wp-title { font-size: 20px; }
+}
+</style>
+
+<div class="wp-overlay" id="wp-overlay" role="dialog" aria-modal="true" aria-labelledby="wp-title">
+  <div class="wp-popup">
+    <button class="wp-close" id="wp-close" aria-label="Cerrar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="wp-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <h2 class="wp-title" id="wp-title">&iexcl;Tu plaza est&aacute; confirmada!</h2>
+    <p class="wp-text">
+      Te hemos enviado un email con los detalles del pr&oacute;ximo Webinar Gratuito para que conozcas a nuestros profesores y veas de qu&eacute; somos capaces.<br><br>
+      Mientras llega ese d&iacute;a, hemos pensado que puedes ir entrando en materia con un preview del curso.
+    </p>
+    <button class="wp-cta" id="wp-cta">Explorar el preview del curso</button>
+    <p class="wp-note">Revisa tu email para los detalles del Webinar</p>
+  </div>
+</div>
+
+<script>
+(function() {
+  'use strict';
+  var params = new URLSearchParams(window.location.search);
+  var hasWelcome = params.get('welcome') === 'true';
+  var hasLead = sessionStorage.getItem('mc_lead_captured') === 'true';
+  var alreadyShown = sessionStorage.getItem('mc_welcome_shown') === 'true';
+  if (alreadyShown || (!hasWelcome && !hasLead)) return;
+  var overlay = document.getElementById('wp-overlay');
+  var popup = overlay.querySelector('.wp-popup');
+  var closeBtn = document.getElementById('wp-close');
+  var ctaBtn = document.getElementById('wp-cta');
+  var focusableSelector = 'button:not([disabled]), [href], input:not([disabled]), [tabindex]:not([tabindex="-1"])';
+  function open() {
+    overlay.classList.add('wp-active');
+    document.body.style.overflow = 'hidden';
+    setTimeout(function() { ctaBtn.focus(); }, 300);
+  }
+  function close() {
+    overlay.classList.remove('wp-active');
+    document.body.style.overflow = '';
+    sessionStorage.setItem('mc_welcome_shown', 'true');
+    if (hasWelcome) {
+      params.delete('welcome');
+      var clean = window.location.pathname;
+      var remaining = params.toString();
+      if (remaining) clean += '?' + remaining;
+      window.history.replaceState({}, '', clean);
+    }
+  }
+  closeBtn.addEventListener('click', close);
+  ctaBtn.addEventListener('click', close);
+  overlay.addEventListener('click', function(e) { if (e.target === overlay) close(); });
+  document.addEventListener('keydown', function(e) {
+    if (!overlay.classList.contains('wp-active')) return;
+    if (e.key === 'Escape') { close(); return; }
+    if (e.key === 'Tab') {
+      var focusable = popup.querySelectorAll(focusableSelector);
+      if (!focusable.length) return;
+      var first = focusable[0];
+      var last = focusable[focusable.length - 1];
+      if (e.shiftKey) { if (document.activeElement === first) { e.preventDefault(); last.focus(); } }
+      else { if (document.activeElement === last) { e.preventDefault(); first.focus(); } }
+    }
+  });
+  if (document.readyState === 'complete') { setTimeout(open, 400); }
+  else { window.addEventListener('load', function() { setTimeout(open, 400); }); }
+})();
 </script>
 </body>
 </html>
