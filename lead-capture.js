@@ -367,11 +367,11 @@
     });
   }
 
-  // TRIGGER 2: Time on page
-  setTimeout(function() { slOpen(); }, slIsMobile ? 60000 : 45000);
+  // TRIGGER 2: Time on page (90 seconds)
+  setTimeout(function() { slOpen(); }, 90000);
 
-  // TRIGGER 3: Deep scroll
-  var slScrollThreshold = slIsMobile ? 0.8 : 0.7;
+  // TRIGGER 3: Deep scroll (95% — casi al final)
+  var slScrollThreshold = 0.95;
   var slScrollTriggered = false;
   window.addEventListener('scroll', function() {
     if (slScrollTriggered) return;
